@@ -18,7 +18,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
+import org.springframework.beans.factory.annotation.Autowired;
 import rzd.vivc.documentexamination.model.dto.users.User;
+import rzd.vivc.documentexamination.service.IStringService;
 
 /**
  *Базовый класс для классов под хибернейт

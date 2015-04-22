@@ -14,8 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import rzd.vivc.documentexamination.model.dto.base.BaseEntity;
-import rzd.vivc.documentexamination.model.dto.base.NamedEntity;
 
 /**
  * Документы для ознакомления. Для БД. Анотации под хибернейт
@@ -24,6 +26,8 @@ import rzd.vivc.documentexamination.model.dto.base.NamedEntity;
  */
 @Entity
 @Table(name = "DOCUMENT")
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class Document extends BaseEntity implements Serializable {
 
 //<editor-fold defaultstate="collapsed" desc="поля">

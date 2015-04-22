@@ -67,7 +67,7 @@ public class Examination implements Serializable {
     }
 //</editor-fold>
 
-//<editor-fold defaultstate="collapsed" desc="User, document - связь с жрушими таблицами">
+//<editor-fold defaultstate="collapsed" desc="User, document - связь с другими таблицами">
     /**
      * документ
      *
