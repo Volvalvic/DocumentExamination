@@ -3,42 +3,41 @@
 	margin: 0;
 	padding: 0;
 }
-/*текст слева*/
+/*text left*/
 a {
 	text-decoration: underline;
-	color: #000000;
+	color: #000080;
 }
 
 a:hover {
 	text-decoration: none;
-}
+       }
 
 body {
 	font-size: 16pt;
-	line-height: 1.8em;
+	line-height: 1.2em;
 	font-family: Arial, sans-serif;
 	background: #dddddd;
 	color: #656565;
-}
+        }
 
 br.clear {
 	clear: both;
 }
 
 h1,h2,h3,h4 {
-	text-transform: uppercase;
 	font-weight: normal;
 	letter-spacing: -1px;
-}
+        }
 
 h2,h3,h4 {
-	margin-bottom: 1.5em;
+	margin-bottom: 1.3em;
 	font-family: Arvo, serif;
-	color: #6A5ACD;
-} /*заголовки нижние*/
+	color: #00008B;
+        } /*bottom titles*/
 
 strong {
-	color: #708090;
+	color: #00008B;
 }
 
 img.left {
@@ -59,8 +58,8 @@ ul {
 }
 
 .date {
-	background: #222222; /*блоки слева*/
-	color: #ffffff;
+	background: #A9A9A9; /*left block*/
+	color:#00008B ;
 	font-size: 0.75em;
 	padding: 2px;
 	display: inline-block;
@@ -69,8 +68,9 @@ ul {
 	margin-right: 1em;
 }
 
-.imageList {
+.imageList  {
 	list-style: none;
+        
 }
 
 .imageList li {
@@ -85,7 +85,7 @@ ul {
 #bg1 {
 	position: absolute;
 	left: 0;
-	top: 0;
+        top: 0;
 	width: 100%;
 	height: 542px;
 	background: #ccc;
@@ -96,51 +96,56 @@ ul {
 #bg2 {
 	position: absolute;
 	left: 0;
-	top: 0;
+        top: 0;
 	width: 100%;
 	height: 243px;
 	background: #48D1CC;
 	z-index: 2;
-	box-shadow: inset 0px 10px 60px 0px rgba(0,0,0,0.7);
-}/*самый верхний прямоугольник*/
+	box-shadow: inset 0px 10px 60px 0px rgba(0.5,0,0,0.7);
+}/*the highest box*/
 
 #banner {
 	position: relative;
-	width: 1180px;
-	height: 300px;
+        width: 100%;
+	height: 250px;
+        
 }
 
 #banner .captions {
 	position: absolute;
 	right: 0;
-	top: 105px;
+	top: 124px;
 	text-shadow: 2px 2px 0px rgba(0,0,0,1.0);
-}
+        }
 
 #banner .captions h2 {
-	background: rgba(0,0,0,0.7);
+	background: rgba(0,0,0,0.5);
 	color: #008080;
-	padding: 28px;
+	padding: 25px;
 	margin: 0;
 }
 
 #banner .captions h3 {
-	background: rgba(10,127,153,0.8);
-	color: #ffffff;
-	padding: 28px;
-	margin: 0;
+        background: rgba(10,127,153,0.8);
+        color: #ffffff;
+        padding: 28px;
+        margin: 0;
+}
+ .imagestyle {
+        width: 100%;
+        height: 200px;
 }
 
 #content {
-	width: 854px;
-	margin: 0 0 0 270px;
+	width:100%;
+        margin: 0 0 0 0;
 	padding: 0;
 }
 
 #copyright {
-	padding: 40px 0 80px 0;
+	padding: 30px 0 25px 0;
 	text-align: center;
-	color: #777777;
+	color: #00008B;
 }
 
 #copyright a {
@@ -150,10 +155,11 @@ ul {
 #header {
 	position: relative;
 	padding: 28px;
-	height: 125px;
-	background: #0a7f99;
+	height: 115px;
+	background: #20B2AA;
 	color: #ffffff;
 	text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+        text-align: center;
 	box-shadow: inset 0px -40px 60px 0px #005B6D;
 	border-bottom: solid 1px #003B47;
 }
@@ -164,22 +170,22 @@ ul {
 	left: 28px;
 	height: 138px;
 	line-height: 138px;
-}
+       }
 
 #logo a {
 	text-decoration: none;
-	color: #ffffff;
+	color: #ffffff;            
 }
 
 #logo h1 {
-	font-size: 2.25em;
-	font-family: Arvo, serif;
+	font-size: 2.15em;
+	font-family: Arvo, serif;       
 }
 
 #main {
 	position: relative;
 	padding: 60px 28px 0px 28px;
-	width: 1124px;
+        width: 100%;     
 }
 
 #main ul {
@@ -200,13 +206,13 @@ ul {
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: 0 28px 0 28px;
-	width: 1124px;
-	height: 48px;
+	padding: 0 0 0 0;
+	width: 100%;
+     	height: 60px;
 	line-height: 48px;
-	margin: 0 0 28px 0;
-	background: #007289/*#20B2AA*/;
-	font-size: 0.9em;
+	margin: 0 0 28 px 0;
+	background: #007289;
+	font-size: 1.2em;
 	border-bottom: solid 1px #009FBF;
 	border-top: solid 1px #1098B3;
 	box-shadow: inset 0px -10px 40px 0px #005B6D;
@@ -214,9 +220,9 @@ ul {
 
 #nav a {
 	text-decoration: none;
-	text-transform: uppercase;
+	text-transform: none;
 	color: #ffffff;
-}
+      }
 
 #nav ul {
 	list-style: none;
@@ -234,9 +240,9 @@ ul {
 #outer {
 	position: relative;
 	z-index: 3;
-	width: 1180px;
+        width: 100%; 
 	margin: 60px auto 0 auto;
-	background: #F0F8FF;
+	background: #F0F8FF; /*main block*/
 	box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.2);
 }
 
@@ -250,14 +256,14 @@ ul {
 
 #search input.text {
 	padding: 10px 40px 10px 10px;
-	background: #ffffff url(images/search.png) top right no-repeat;
+	background: #ffffff url(images_1/search.png) top right no-repeat;
 	border: 0;
 	width: 250px;
 	color: #777;
 }
 
 #sidebar {
-	width: 250px;
+	width: 300px;
 	float: left;
 	padding: 0;
 }
