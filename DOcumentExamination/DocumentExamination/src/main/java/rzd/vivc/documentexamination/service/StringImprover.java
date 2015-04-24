@@ -28,7 +28,7 @@ public class StringImprover implements IStringService {
     @Override
     public String getDateString(Date dat) {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        return dat == null ? "Для формирования даты необходимо ввести информацию по всем видам ресурсов" : format.format(dat);
+        return dat == null ? " " : format.format(dat);
     }
 
 

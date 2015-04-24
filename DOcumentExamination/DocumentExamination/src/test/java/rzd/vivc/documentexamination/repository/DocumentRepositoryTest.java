@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+import rzd.vivc.documentexamination.model.dto.documents.Document;
+import rzd.vivc.documentexamination.model.dto.documents.DocumentTestConfig;
+import rzd.vivc.documentexamination.service.IStringService;
 
 /**
  *
@@ -35,6 +38,16 @@ public class DocumentRepositoryTest {
     @Test
     @Transactional
     public void count() {
+        assertEquals(1, documentRepository.count());
+    }
+    
+        @Test
+    @Transactional
+    public void save() {
+        Document document = new Document();
+        documentRepository.addAdditionalInfo(document);
+        documentRepository.save(document);
         assertEquals(2, documentRepository.count());
+            System.out.println(document);
     }
 }

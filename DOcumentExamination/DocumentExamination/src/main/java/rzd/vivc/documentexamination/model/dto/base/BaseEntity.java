@@ -21,6 +21,7 @@ import javax.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 import rzd.vivc.documentexamination.model.dto.users.User;
 import rzd.vivc.documentexamination.service.IStringService;
+import rzd.vivc.documentexamination.service.StringImprover;
 
 /**
  *Базовый класс для классов под хибернейт
@@ -60,8 +61,7 @@ public class BaseEntity implements Serializable {
      * средство для обработки строк
      */
     @Transient
-    @Autowired
-    protected IStringService stringService;
+    protected StringImprover stringService=new StringImprover();
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="get-set">
