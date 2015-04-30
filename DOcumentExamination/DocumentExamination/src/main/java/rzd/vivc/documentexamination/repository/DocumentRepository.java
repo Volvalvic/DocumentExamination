@@ -12,6 +12,6 @@ import rzd.vivc.documentexamination.model.dto.documents.Document;
  * Интерфейс репозитория для документов {@link Document}
  * @author VVolgina
  */
-public interface DocumentRepository extends JpaRepository<Document, Long>, SaverWIthAdditionalInfo{
+public interface DocumentRepository extends JpaRepository<Document, Long>{
 
 }

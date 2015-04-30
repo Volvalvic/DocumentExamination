@@ -6,6 +6,7 @@
 package rzd.vivc.documentexamination.configuration;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import rzd.vivc.documentexamination.model.dto.documents.Document;
 import rzd.vivc.documentexamination.repository.DocumentRepository;
 
 /**
@@ -17,5 +18,13 @@ public class NewClass {
         AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(SpringDateConfigMySQL.class);
         DocumentRepository rep=context.getBean(DocumentRepository.class);
         System.out.println(rep.count());
+        
+
+        Document document = new Document(2);
+        document.setName("new");
+        rep.save(document);
+
+        System.out.println(document);
+         System.out.println(rep.count());
     }
 }

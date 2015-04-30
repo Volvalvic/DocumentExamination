@@ -40,14 +40,26 @@ public class DocumentRepositoryTest {
     public void count() {
         assertEquals(1, documentRepository.count());
     }
-    
-        @Test
+
+    @Test
     @Transactional
     public void save() {
         Document document = new Document();
-        documentRepository.addAdditionalInfo(document);
         documentRepository.save(document);
         assertEquals(2, documentRepository.count());
-            System.out.println(document);
+        System.out.println(document);
+    }
+    
+        @Test
+    @Transactional
+    public void saveExisted() {
+        Document document = new Document(1);
+        document.setName("new");
+        documentRepository.save(document);
+        assertEquals(1, documentRepository.count());
+        
+        document =documentRepository.getOne(1l);
+        assertEquals("new", document.getName());
+        System.out.println(document);
     }
 }

@@ -26,8 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableJpaRepositories(basePackages = "rzd.vivc.documentexamination.repository")
-@EnableTransactionManagement
-@Import(TransactionsConfig.class)
+@Import({TransactionsConfig.class, RepositoryAspectsConfig.class})
 public class SpringDateConfigMySQL {
 
     @Bean
