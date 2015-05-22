@@ -5,7 +5,6 @@
  */
 package rzd.vivc.documentexamination.configuration;
 
-import rzd.vivc.documentexamination.repository.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
