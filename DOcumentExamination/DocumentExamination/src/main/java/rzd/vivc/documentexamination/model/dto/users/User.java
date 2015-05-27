@@ -49,6 +49,10 @@ public class User extends BaseEntity implements Serializable {
         super();
     }
 
+    public User(long i) {
+        super(i);
+    }
+
     //<editor-fold defaultstate="collapsed" desc="get-set">
 //<editor-fold defaultstate="collapsed" desc="name, surname, patronomicname - ФИО">
     /**

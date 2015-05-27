@@ -55,6 +55,15 @@ public class Document extends BaseEntity implements Serializable {
     private DocumentType documentType;
 //</editor-fold>
 
+    public Document() {
+    }
+
+    public Document(int i) {
+        super(i);
+    }
+    
+    
+
 //<editor-fold defaultstate="collapsed" desc="get-set">
     //<editor-fold defaultstate="collapsed" desc="name, number, startDate - идентификационные данные документа">
     /**
