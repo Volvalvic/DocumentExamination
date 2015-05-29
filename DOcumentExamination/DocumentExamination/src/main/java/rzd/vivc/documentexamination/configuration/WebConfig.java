@@ -21,7 +21,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("rzd.vivc.documentexamination.service.controller")
+@ComponentScan("rzd.vivc.documentexamination.controller")
 public class WebConfig extends WebMvcConfigurerAdapter{
 
     @Bean

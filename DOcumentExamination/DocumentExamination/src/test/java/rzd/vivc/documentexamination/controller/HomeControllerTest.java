@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rzd.vivc.documentexamination.service.controller;
+package rzd.vivc.documentexamination.controller;
 
 import org.junit.Test;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
