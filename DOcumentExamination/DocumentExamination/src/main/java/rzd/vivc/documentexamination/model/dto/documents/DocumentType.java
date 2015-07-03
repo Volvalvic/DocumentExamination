@@ -19,6 +19,13 @@ import rzd.vivc.documentexamination.model.dto.base.NamedEntity;
 @Table(name = "DOCUMENT_TYPE")
 public class DocumentType extends NamedEntity implements Serializable {
 
+    public DocumentType(long id) {
+        super(id);
+    }
+
+    public DocumentType() {
+    }
+
     @Override
     public String toString() {
         return "DocumentType{" + super.toString() + '}';

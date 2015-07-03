@@ -45,7 +45,7 @@ public class DocumentTest {
         document.setStartDate(new Date());
         document.setUserCreator(null);
         document.setUserUpdater(null);
-         String res= "Document{" +"id=" + 1 + ", dateCreate=" + stringService.getDateString(new Date()) + ", dateUpdate=" + stringService.getDateString(new Date())  + ", userCreator=" + "" + ", userUpdater=" + ""+ " "+ "name=" + "name" + ", number=" + "num1"+ ", startDate=" + stringService.getDateString(new Date())   + ", description=" + "Description" + ", file=" + "file" + ", documentType=" +" " + '}';
+         String res= "Document{" +"id=" + 1 + ", dateCreate=" + stringService.getDateString(new Date()) + ", dateUpdate=" + stringService.getDateString(new Date())  +  " "+ "name=" + "name" + ", number=" + "num1"+ ", startDate=" + stringService.getDateString(new Date())   + ", description=" + "Description" + ", file=" + "file" + '}';
           assertEquals(res, document.toString());
     }
     

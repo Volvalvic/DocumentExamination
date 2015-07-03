@@ -199,6 +199,15 @@ public class BaseEntity implements Serializable {
         this.id = id;
     }
 
+    public BaseEntity(long id, Date dateUpdate, User userCreator, User userUpdater) {
+        this.id = id;
+        this.dateUpdate = dateUpdate;
+        this.userCreator = userCreator;
+        this.userUpdater = userUpdater;
+    }
+    
+    
+
     //<editor-fold defaultstate="collapsed" desc="сгенерированное">
     @Override
     public int hashCode() {
@@ -223,7 +232,7 @@ public class BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "id=" + id + ", dateCreate=" + stringService.getDateString(dateCreate) + ", dateUpdate=" + stringService.getDateString(dateUpdate) + ", userCreator=" + (userCreator == null ? "" : userCreator.getFIO()) + ", userUpdater=" + (userUpdater == null ? "" : userUpdater.getFIO()) + " ";
+        return "id=" + id + ", dateCreate=" + stringService.getDateString(dateCreate) + ", dateUpdate=" + stringService.getDateString(dateUpdate)  /*+", userCreator=" + (userCreator == null ? "" : userCreator.getFIO()) + ", userUpdater=" + (userUpdater == null ? "" : userUpdater.getFIO()) */+ " ";
     }
 //</editor-fold>
 

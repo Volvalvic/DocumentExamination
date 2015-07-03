@@ -45,6 +45,15 @@ public class NamedEntity extends BaseEntity implements Serializable{
 
     //</editor-fold>
 
+    public NamedEntity(long id) {
+        super(id);
+    }
+
+    public NamedEntity() {
+    }
+    
+    
+    
     @Override
     public String toString() {
         return super.toString()+"name=" + name + ' ';

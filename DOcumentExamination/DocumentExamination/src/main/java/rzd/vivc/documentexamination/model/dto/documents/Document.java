@@ -18,6 +18,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import rzd.vivc.documentexamination.model.dto.base.BaseEntity;
+import rzd.vivc.documentexamination.model.dto.users.User;
 
 /**
  * Документы для ознакомления. Для БД. Анотации под хибернейт
@@ -61,6 +62,17 @@ public class Document extends BaseEntity implements Serializable {
     public Document(int i) {
         super(i);
     }
+
+    public Document(String name, String number, Date startDate, String description, String file, DocumentType documentType, long id, Date dateUpdate, User userCreator, User userUpdater) {
+        super(id, dateUpdate, userCreator, userUpdater);
+        this.name = name;
+        this.number = number;
+        this.startDate = startDate;
+        this.description = description;
+        this.file = file;
+        this.documentType = documentType;
+    }
+    
     
     
 
@@ -170,8 +182,6 @@ public class Document extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Document{" +super.toString()+ "name=" + name + ", number=" + number + ", startDate=" + stringService.getDateString(startDate) + ", description=" + description + ", file=" + file + ", documentType=" +(documentType==null?" ":documentType.getName()) + '}';
+        return "Document{" +super.toString()+ "name=" + name + ", number=" + number + ", startDate=" + stringService.getDateString(startDate) + ", description=" + description + ", file=" + file + /*", documentType=" +(documentType==null?" ":documentType.getName()) +*/ '}';
     }
-    
-    
 }

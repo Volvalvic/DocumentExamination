@@ -1,6 +1,6 @@
 <%-- 
-    Document   : documents
-    Created on : May 28, 2015, 11:09:09 AM
+    Document   : document
+    Created on : Jun 19, 2015, 11:42:30 AM
     Author     : VVolgina
 --%>
 
@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-     <head>
+    <head>
         <meta charset="UTF-8"/>
         <meta name="keywords" content="ЕСПП, документ, распоряжение, телеграмма, ознакомление, отчет, контроль"/>
         <meta name="description" content="Система контроля ознакомления с документами для ЕСПП"/>
@@ -18,17 +18,12 @@
         <script src="<c:url value="/resources/js/main.js"/>"></script>
     </head>
     <body>
-        <ul>
-            <c:forEach items="${documentList}" var="document">
-                <li id="document_<c:out value="${document.id}"/>">
-                    <div>
-                        <c:out value="${document.name}"/>
-                    </div>
-                    <div>
-                        <c:out value="${document.description}"/>
-                    </div>
-                </li>
-            </c:forEach>
-        </ul>
+        <c:out value="${document.id}"/>
+        <div>
+            <c:out value="${document.name}"/>
+        </div>
+        <div>
+            <c:out value="${document.description}"/>
+        </div>
     </body>
 </html>
