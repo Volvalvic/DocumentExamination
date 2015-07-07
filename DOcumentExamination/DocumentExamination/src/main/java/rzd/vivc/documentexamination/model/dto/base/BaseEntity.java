@@ -18,13 +18,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
-import org.springframework.beans.factory.annotation.Autowired;
 import rzd.vivc.documentexamination.model.dto.users.User;
-import rzd.vivc.documentexamination.service.IStringService;
 import rzd.vivc.documentexamination.service.StringImprover;
 
 /**
- *Базовый класс для классов под хибернейт
+ * Базовый класс для классов под хибернейт
+ *
  * @author VVolgina
  */
 @MappedSuperclass
@@ -61,7 +60,7 @@ public class BaseEntity implements Serializable {
      * средство для обработки строк
      */
     @Transient
-    protected StringImprover stringService=new StringImprover();
+    private StringImprover stringService = new StringImprover();
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="get-set">
@@ -110,7 +109,7 @@ public class BaseEntity implements Serializable {
      * @return строковое представление даты создания
      */
     public String getDateCreateString() {
-        return stringService.getDateString(dateCreate);
+        return getStringService().getDateString(dateCreate);
     }
 //</editor-fold>
 
@@ -173,8 +172,15 @@ public class BaseEntity implements Serializable {
         this.userUpdater = userUpdater;
     }
 //</editor-fold>
-    //</editor-fold>
 
+    /**
+     * @return the stringService
+     */
+    public StringImprover getStringService() {
+        return stringService;
+    }
+
+    //</editor-fold>
     /**
      * Создание объекта
      *
@@ -205,8 +211,6 @@ public class BaseEntity implements Serializable {
         this.userCreator = userCreator;
         this.userUpdater = userUpdater;
     }
-    
-    
 
     //<editor-fold defaultstate="collapsed" desc="сгенерированное">
     @Override
@@ -232,8 +236,7 @@ public class BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "id=" + id + ", dateCreate=" + stringService.getDateString(dateCreate) + ", dateUpdate=" + stringService.getDateString(dateUpdate)  /*+", userCreator=" + (userCreator == null ? "" : userCreator.getFIO()) + ", userUpdater=" + (userUpdater == null ? "" : userUpdater.getFIO()) */+ " ";
+        return "id=" + id + ", dateCreate=" + getStringService().getDateString(dateCreate) + ", dateUpdate=" + getStringService().getDateString(dateUpdate) /*+", userCreator=" + (userCreator == null ? "" : userCreator.getFIO()) + ", userUpdater=" + (userUpdater == null ? "" : userUpdater.getFIO()) */ + " ";
     }
 //</editor-fold>
-
 }

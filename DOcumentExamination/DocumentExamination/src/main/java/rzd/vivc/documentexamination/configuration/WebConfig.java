@@ -30,7 +30,10 @@ public class WebConfig extends WebMvcConfigurerAdapter{
                 = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
-        resolver.setExposeContextBeansAsAttributes(true);
+        //позволяет получать досутп из JSP КО ВСЕМ БИНАМ В КОНТЕЙНЕРЕ. пОКАМ ННЕ НУЖНО
+       // resolver.setExposeContextBeansAsAttributes(true);
+        //собираюсь использовать jstl, поэтому для удобства использую соответствующий тип view
+            resolver.setViewClass(org.springframework.web.servlet.view.JstlView.class);
         return resolver;
     }
 

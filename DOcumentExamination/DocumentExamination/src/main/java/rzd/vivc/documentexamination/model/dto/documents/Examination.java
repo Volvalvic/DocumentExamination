@@ -6,6 +6,7 @@
 package rzd.vivc.documentexamination.model.dto.documents;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +16,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import rzd.vivc.documentexamination.model.dto.users.User;
 
 /**
@@ -37,6 +41,7 @@ public class Examination implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DOCUMENT_ID")
     private Document document;
+
     //пользователь
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
@@ -45,6 +50,11 @@ public class Examination implements Serializable {
     //флаг, ознакомлен, или нет
     @Column(name = "CHECKED")
     private boolean checked;
+
+    //дата ознакомления
+    @Column(name = "START_DATE")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date startDate;
 
     //<editor-fold defaultstate="collapsed" desc="get-set">
     //<editor-fold defaultstate="collapsed" desc="id - id записи">
@@ -124,6 +134,26 @@ public class Examination implements Serializable {
         this.checked = checked;
     }
 //</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc="дата ознакомления">
+
+    /**
+     *дата ознакомления
+     * @return дата ознакомления
+     */
+        public Date getStartDate() {
+        return startDate;
+    }
+    
+    /**
+     * дата ознакомления
+     * @param startDate дата ознакомления
+     */
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+//</editor-fold>
+    
     //</editor-fold>
 
     @Override

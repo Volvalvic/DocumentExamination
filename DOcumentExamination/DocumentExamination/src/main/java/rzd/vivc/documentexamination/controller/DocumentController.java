@@ -5,8 +5,11 @@
  */
 package rzd.vivc.documentexamination.controller;
 
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -41,18 +44,26 @@ public class DocumentController {
      * @return view Для страницы редактирования
      */
     @RequestMapping(value = "/edit", method = GET)
-    public String edit() {
+    public String edit(Model model) {
+        //на странице радактирования все поля привязаны к содержащемуся в 
+        //модели атрибуту document, для корректной работы его надо добавить в модель
+        model.addAttribute(new Document());
         return "editDocument";
     }
 
     /**
      * Обработка данных с формы
+     * анотация @Valid означает, что данные должны соответвтвовать ограничениям в классе Document
      *
      * @param document документ, который редактировали
-     * @return "redirect: /documents/{documentID}"
+     * @param errors список ошибок валидации
+     * @return "redirect: /documents/{documentID}" если все впорядке, возврат на форму, если есть ошибки
      */
     @RequestMapping(value = "/edit", method = POST)
-    public String processEdit(Document document) {
+    public String processEdit(@Valid Document document, Errors errors) {
+        if(errors.hasErrors()){
+             return "editDocument";
+        }
         Document saved = documentRepository.save(document);
         return "redirect:/documents/" + saved.getId();
     }

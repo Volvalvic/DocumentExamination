@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -33,18 +36,25 @@ public class Document extends BaseEntity implements Serializable {
 
 //<editor-fold defaultstate="collapsed" desc="поля">
     //Название документа
-    @Column(name = "NAME")
+    //сообщения для валидайии сожержатся в файле
+    //ValidationMessages в корне
+    @Column(name = "NAME", length = 100)
+    @NotNull(message = "{valid.exists}")
+    @Size(min = 1,max=100, message = "{valid.size}")
     private String name;
     //номер документа
-    @Column(name = "NUMBER")
+    @Column(name = "NUMBER", length = 100)
+    @NotNull(message = "{valid.exists}")
+    @Size(min = 1,max=100, message = "{valid.size}")
     private String number;
-    //дата подписания
+    //дата подписания, должна быть в прошлом
     @Column(name = "START_DATE")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date startDate;
     
     //краткое описание
     @Column(name = "DESCRIPTION")
+    @Size(max=255, message = "{valid.size}")
     private String description;
     //прикрепленный файл
     @Column(name = "FILE")
@@ -182,6 +192,6 @@ public class Document extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Document{" +super.toString()+ "name=" + name + ", number=" + number + ", startDate=" + stringService.getDateString(startDate) + ", description=" + description + ", file=" + file + /*", documentType=" +(documentType==null?" ":documentType.getName()) +*/ '}';
+        return "Document{" +super.toString()+ "name=" + name + ", number=" + number + ", startDate=" + getStringService().getDateString(startDate) + ", description=" + description + ", file=" + file + /*", documentType=" +(documentType==null?" ":documentType.getName()) +*/ '}';
     }
 }

@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,11 +20,16 @@
     </head>
     <body>
         <h1>Редактирование документа</h1>
-        <form method="POST">
-            Название: <input type="text" name="name"/><br/>
-            Номер: <input type="text" name="number"/><br/>
-            Краткое описание: <input type="text" name="description"/><br/>
+        <sf:form method="POST" commandName="document">
+            <!--выриант отображения ошибок для всей формы сразу sf:errors path="*" element="div"/
+            при таком раскладе удобно всем input проставить cssErrorClass, чобы сразу видеть в котором ошибка
+            Лейблам класс оформления при ошибке можно проставить точно так же-->
+            <sf:label path="name">Название:</sf:label> <sf:input path="name"/> <sf:errors path="name"/><br/>
+            <sf:label path="number">Номер: </sf:label><sf:input path="number"/> <sf:errors path="number"/><br/>
+            <!--Можно указывать type, таким образом получится использовать теги, специфичесике для Html5
+            cssStyle - стиль Css-->
+            <sf:label path="description">Краткое описание:</sf:label> <sf:input path="description"/> <sf:errors path="description"/><br/>
             <input type="submit" name="ОК"/>
-        </form>
+        </sf:form>
     </body>
 </html>

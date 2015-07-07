@@ -7,6 +7,9 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 import rzd.vivc.documentexamination.model.dto.base.BaseEntity;
 
 /**
@@ -22,21 +25,29 @@ public class User extends BaseEntity implements Serializable {
 
     //<editor-fold defaultstate="collapsed" desc="Поля">
     //имя
-    @Column(name = "NAME")
+    @Column(name = "NAME", length = 100)
+    @NotNull(message = "{valid.exists}")
+    @Size(min = 1,max=100)
     private String name = "";
     //фамилия
-    @Column(name = "SURNAME")
+    @Column(name = "SURNAME", length = 100)
+    @NotNull(message = "{valid.exists}")
+    @Size(min = 1,max=100)
     private String surname = "";
     //отчество
-    @Column(name = "PATRONOMICNAME")
+    @Column(name = "PATRONOMICNAME", length = 100)
+    @NotNull(message = "{valid.exists}")
+    @Size(min = 1,max=100, message = "{valid.size}")
     private String patronomicname = "";
 
     //номер телефона
-    @Column(name = "PHONE")
+    @Column(name = "PHONE", length = 100)
+    @Size(max=100, message = "{valid.size}")
     private String phoneNumber = "";
 
     //дополнительная информация
-    @Column(name = "ADDITIONAL_INFO")
+    @Column(name = "ADDITIONAL_INFO", length = 200)
+    @Size(max=200, message = "{valid.size}")
     private String additionalInfo = "";
 
     //подразделение
@@ -119,7 +130,7 @@ public class User extends BaseEntity implements Serializable {
     }
 //</editor-fold>
 
-//<editor-fold defaultstate="collapsed" desc="phoneNumber, email - контактная информация">
+//<editor-fold defaultstate="collapsed" desc="phoneNumberl - контактная информация">
     /**
      * Номер телефона
      *
@@ -137,8 +148,8 @@ public class User extends BaseEntity implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
     //</editor-fold>
+    
 //<editor-fold defaultstate="collapsed" desc="additionalInfo - Дополнительная информация">
     /**
      * Дополнительная информация

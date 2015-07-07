@@ -48,6 +48,8 @@ public class DocumentRepositoryTest {
     @Transactional
     public void save() {
         Document document = new Document();
+        document.setName("1");
+        document.setNumber("1");
         documentRepository.save(document);
         assertEquals(3, documentRepository.count());
         System.out.println(document);
@@ -58,6 +60,7 @@ public class DocumentRepositoryTest {
     public void saveExisted() {
         Document document = new Document(1);
         document.setName("new");
+        document.setNumber("1");
         documentRepository.save(document);
         assertEquals(2, documentRepository.count());
 

@@ -7,7 +7,10 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.validator.constraints.Email;
 import rzd.vivc.documentexamination.model.dto.base.BaseEntity;
 
 /**
@@ -23,15 +26,22 @@ public class Account extends BaseEntity implements Serializable {
 
     //<editor-fold defaultstate="collapsed" desc="Поля">
     //e-mail
-    @Column(name = "EMAIL   ")
+    @Column(name = "EMAIL", length = 100)
+    @NotNull(message = "{valid.exists}")
+    @Email(message = "{valid.email}")
     private String email = "";
 
     //логин
+    //Mutable-true значит, что он может быть изменен
     @NaturalId(mutable = true)
-    @Column(name = "LOGIN")
+    @Column(name = "LOGIN", length = 30)
+    @NotNull(message = "{valid.exists}")
+    @Size(min = 5,max=30, message = "{valid.size}")
     private String login;
     //пароль
-    @Column(name = "PASSWORD")
+    @Column(name = "PASSWORD", length = 30)
+    @NotNull(message = "{valid.exists}")
+    @Size(min = 5,max=30, message = "{valid.size}")
     private String password;
 
     //тип пользователя

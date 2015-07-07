@@ -8,6 +8,8 @@ package rzd.vivc.documentexamination.model.dto.base;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Базовый класс для сущностей БД, у которых из основных полей толдько имя
@@ -18,7 +20,9 @@ public class NamedEntity extends BaseEntity implements Serializable{
      //<editor-fold defaultstate="collapsed" desc="поля">
     
     //имя
-    @Column(name = "NAME")
+    @Column(name = "NAME", length = 100)
+    @NotNull(message = "{valid.exists}")
+    @Size(min = 1,max=100, message = "{valid.size}")
     private String name;
     
     //</editor-fold>

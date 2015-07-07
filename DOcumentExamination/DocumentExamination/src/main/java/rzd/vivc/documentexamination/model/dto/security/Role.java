@@ -11,16 +11,18 @@ import javax.persistence.Table;
 import rzd.vivc.documentexamination.model.dto.base.NamedEntity;
 
 /**
- *  * Описывает возможные типы пользователей в системе. Пользователи разных типов
- * могут обладать разными правами при доступе к элементам системы Например
+ *  * Описывает возможные типы пользователей в системе. Пользователи разных
+ * типов могут обладать разными правами при доступе к элементам системы Например
  * пользователь, только просмотр, администратор. Для БД. Анотации под хибернейт
+ *
  * @author VVolgina
  */
 @Entity
 @Table(name = "ROLE")
-public class Role extends NamedEntity implements Serializable{
-        @Override
+public class Role extends NamedEntity implements Serializable {
+
+    @Override
     public String toString() {
-        return "Role{" + super.toString()+ '}';
+        return "Role{" + super.toString() + '}';
     }
 }
