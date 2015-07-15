@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -28,6 +27,7 @@ import rzd.vivc.documentexamination.model.dto.users.User;
  *
  * @author VVolgina
  */
+//TODO Разбить на 2 класса, один с ограничениями для web, второй для bd
 @Entity
 @Table(name = "DOCUMENT")
 @Component

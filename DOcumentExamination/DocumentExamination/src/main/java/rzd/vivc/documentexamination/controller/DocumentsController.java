@@ -33,12 +33,12 @@ public class DocumentsController {
     public DocumentsController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
     }
-    
-      /**
-     * При GET запросе к /documents в модель добавляется список документов удоалетворяющих параметрам, заданным в фильтре с
-     * ключом documentList - название берется в соотвествии с вовращаемым типом
-     * в качестве view берется documents, так как контроллер обрабатывает
-     * запросы к /documents
+
+    /**
+     * При GET запросе к /documents в модель добавляется список документов
+     * удоалетворяющих параметрам, заданным в фильтре с ключом documentList -
+     * название берется в соотвествии с вовращаемым типом в качестве view
+     * берется documents, так как контроллер обрабатывает запросы к /documents
      *
      * @param type фильтр Тип документа
      * @param name фильтр имя документа
@@ -48,15 +48,16 @@ public class DocumentsController {
      * @return список документов
      */
     @RequestMapping(method = RequestMethod.GET)
-    public List<Document> documents(@RequestParam(value="type", defaultValue = "0") long type, @RequestParam(value="name", required = false) String name, @RequestParam(value="number", required = false) String number, @RequestParam(value="description", required = false) String description, @RequestParam(value="date", required = false) Date date) {
+    public List<Document> documents(@RequestParam(value = "type", defaultValue = "0") long type, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "number", required = false) String number, @RequestParam(value = "description", required = false) String description, @RequestParam(value = "date", required = false) Date date) {
         List<Document> findFiltered = documentRepository.findFiltered(name, number, date, description, type);
         return findFiltered;
     }
-    
-          /**
-     * При GET запросе c path parameter к /documents в модель добавляется документ с заданным id По
-     * ключу document - название берется в соотвествии с вовращаемым типом
-     * в качестве view берется document, так как эта строка возвращается
+
+    /**
+     * При GET запросе c path parameter к /documents в модель добавляется
+     * документ с заданным id По ключу document - название берется в соотвествии
+     * с вовращаемым типом в качестве view берется document, так как эта строка
+     * возвращается
      *
      * @param documentID id Документа
      * @param model модель с данными для view
@@ -64,8 +65,11 @@ public class DocumentsController {
      */
     @RequestMapping(value = "/{documentID}", method = RequestMethod.GET)
     //value="documentID" можно опустить, если название переменной и параметр в value в requestMapping савпадают
-    public String document(@PathVariable(value="documentID") long documentID, Model model) {
-        model.addAttribute(documentRepository.findOne(documentID));
+    public String document(@PathVariable(value = "documentID") long documentID, Model model) {
+        //документ может быть уже в готовом виде засунут в модель после сохранения
+        if (!model.containsAttribute("document")) {
+            model.addAttribute(documentRepository.findOne(documentID));
+        }
         return "document";
     }
 }

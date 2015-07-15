@@ -5,14 +5,19 @@
  */
 package rzd.vivc.documentexamination.configuration;
 
+import java.io.IOException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 /**
  * настройка web
@@ -26,15 +31,16 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 
     @Bean
     public ViewResolver viewResolver() {
-        InternalResourceViewResolver resolver
-                = new InternalResourceViewResolver();
+        /*        InternalResourceViewResolver resolver
+        = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
         //позволяет получать досутп из JSP КО ВСЕМ БИНАМ В КОНТЕЙНЕРЕ. пОКАМ ННЕ НУЖНО
-       // resolver.setExposeContextBeansAsAttributes(true);
+        // resolver.setExposeContextBeansAsAttributes(true);
         //собираюсь использовать jstl, поэтому для удобства использую соответствующий тип view
-            resolver.setViewClass(org.springframework.web.servlet.view.JstlView.class);
-        return resolver;
+        resolver.setViewClass(org.springframework.web.servlet.view.JstlView.class);
+        return resolver;*/
+        return new TilesViewResolver();
     }
 
     @Override
@@ -42,4 +48,13 @@ public class WebConfig extends WebMvcConfigurerAdapter{
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+    
+    @Bean
+    public TilesConfigurer tilesConfigurer(){
+        TilesConfigurer tiles=new TilesConfigurer();
+        tiles.setDefinitions(new String[]{"/WEB-INF/layout/tiles.xml"});
+        tiles.setCheckRefresh(true);
+        return tiles;
+   }
+    
 }

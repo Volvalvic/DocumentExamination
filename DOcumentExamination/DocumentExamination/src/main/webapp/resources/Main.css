@@ -7,6 +7,205 @@ and open the template in the editor.
     Created on : May 27, 2015, 10:59:22 AM
     Author     : VVolgina
 */
+@font-face {
+    font-family: RussianRail; /* Имя шрифта */
+    src: url(../fonts/1.otf)  format("opentype"); /* Путь к файлу со шрифтом */
+
+}
+
+html{
+    height: 100%; 
+}
+
 body{
-    background-color: red;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    background: #dddddd;
+    color: #656565;
+    height: 100%;
+}
+
+a {
+    text-decoration: underline;
+    color: #000080;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h1,h2,h3,h4 {
+    font-weight: normal;
+    letter-spacing: -1px;
+    font-family: RussianRail, Arvo, serif;
+}
+
+h2,h3,h4 {
+    margin-bottom: 1.3em;
+    color: #00008B;
+} /*bottom titles*/
+
+strong {
+    color: #00008B;
+}/*повышенная значимость содержимого*/
+
+img.left {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+img.top {
+    margin: 8px 0 20px 0;
+}
+
+p {
+    margin-bottom: 1.25em;
+}
+
+ul {
+    margin-bottom: 1.25em;
+}
+
+header, article, footer, nav{
+    display: block;
+    position: relative;
+}
+
+header {
+    padding: 28px;
+    height: 362px;
+    background: #20B2AA;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    text-align: center;
+    border-bottom: solid 1px #003B47;
+}
+
+.headerMain{
+    box-shadow: inset 0px -40px 60px 0px #005B6D;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    height: 110px;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 28px;
+    height: 100%;
+    line-height: 100%;
+}
+
+.logo h1 {
+    font-size: 30px;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+    right: 28px;
+    height: 50%;
+    line-height: 50%;
+}
+
+.logout label.text, .logout input.text {
+    padding: 10px;
+    border: 0;
+    color: #777;
+}
+
+.logout label.text{
+    padding-right: 40px;
+    background: #ffffff url(images_1/search.png) top right no-repeat;
+    width: 250px;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 0 0 0;
+    width: 100%;
+    height: 60px;
+    line-height: 48px;
+    margin: 0 0 28px 0;
+    background: #007289;
+    font-size: 1.2em;
+    border-bottom: solid 1px #009FBF;
+    border-top: solid 1px #1098B3;
+    box-shadow: inset 0px -10px 40px 0px #005B6D;
+}
+
+nav a {
+    text-decoration: none;
+    text-transform: none;
+    color: #ffffff;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    padding: 0 12px 0 12px;
+}
+
+nav ul li.first {
+    padding-left: 0;
+}
+
+
+.banner {
+    position: absolute;
+    left:0;
+    top: 168px;
+    width: 100%;
+    height: 250px;
+
+}
+
+.banner .captions {
+    position: absolute;
+    right: 0;
+    top: 124px;
+    text-shadow: 2px 2px 0px rgba(0,0,0,1.0);
+}
+
+.banner .captions h2 {
+    background: rgba(0,0,0,0.5);
+    color: #008080;
+    padding: 25px;
+    margin: 0;
+}
+
+.image{
+    width: 100%;
+    height: 250px;
+}
+
+article{
+
+}
+
+footer{
+    height: 30px;
+    text-align: center;
+    color: #00008B;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 0 5px 0;
+}
+
+.copyright {
+    font-size: 8px;
+    padding: 5px 0 0 0;
+    margin: 0;
+    color: #777777;
 }

@@ -5,7 +5,6 @@
  */
 package rzd.vivc.documentexamination.repository;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;

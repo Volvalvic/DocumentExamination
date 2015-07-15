@@ -5,6 +5,7 @@
  */
 package rzd.vivc.documentexamination.configuration;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -13,8 +14,7 @@ import org.springframework.context.annotation.Import;
  * @author VVolgina
  */
 @Configuration
-
 @Import(SpringDateConfigMySQL.class)
+@ComponentScan(basePackages = {"rzd.vivc.documentexamination.service"})
 public class RootConfig {
-
 }
