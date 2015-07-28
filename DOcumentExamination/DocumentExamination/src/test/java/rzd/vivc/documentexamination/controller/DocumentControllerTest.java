@@ -33,7 +33,7 @@ public class DocumentControllerTest {
      *
      * @throws java.lang.Exception
      */
-    @Test
+   
     public void testEdit() throws Exception {
         System.out.println("edit");
         DocumentRepository mockRepository = mock(DocumentRepository.class);

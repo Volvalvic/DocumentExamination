@@ -6,7 +6,7 @@
 package rzd.vivc.documentexamination.service;
 
 import java.io.IOException;
-import javax.servlet.http.Part;
+import rzd.vivc.documentexamination.form.DocumentForm;
 
 /**
  * Сервис сохранения загруженных файлов 
@@ -16,9 +16,21 @@ public interface FileSavingService {
 
     /**
      * Сохранение загруженной на сайт информации
-     * @param file загруженные данные
-     * @return название сохраненного файла, либо пустую строку, если файл не был загружен
+     * @param document документ
      * @throws IOException ошибки при сохранении
      */
-    String saveUploadedFile(Part file) throws IOException;
+    void saveUploadedFile(DocumentForm document) throws IOException;
+    
+    /**
+     * Возвращает ссылку для доступа к файлу
+     * @param fileName имя файла
+     * @return ссылка для доступа к файлу
+     */
+    String getFileLink(String fileName);
+    
+    /**
+     * Проставляет в документе путь к файлу
+     * @param document документ
+     */
+    void addFileLink(DocumentForm document);
 }

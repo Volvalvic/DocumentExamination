@@ -39,29 +39,24 @@ public class Document extends BaseEntity implements Serializable {
     //сообщения для валидайии сожержатся в файле
     //ValidationMessages в корне
     @Column(name = "NAME", length = 100)
-    @NotNull(message = "{valid.exists}")
-    @Size(min = 1,max=100, message = "{valid.size}")
     private String name;
     //номер документа
     @Column(name = "NUMBER", length = 100)
-    @NotNull(message = "{valid.exists}")
-    @Size(min = 1,max=100, message = "{valid.size}")
     private String number;
     //дата подписания, должна быть в прошлом
     @Column(name = "START_DATE")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date startDate;
-    
+
     //краткое описание
     @Column(name = "DESCRIPTION")
-    @Size(max=255, message = "{valid.size}")
     private String description;
     //прикрепленный файл
-    @Column(name = "FILE")
+    @Column(name = "FILE", nullable = true)
     private String file;
-    
+
     //тип документа
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "DOCUMENT_TYPE_ID")
     private DocumentType documentType;
 //</editor-fold>
@@ -82,106 +77,134 @@ public class Document extends BaseEntity implements Serializable {
         this.file = file;
         this.documentType = documentType;
     }
-    
-    
-    
+
+    public Document(String name, String number, Date startDate, String description, DocumentType documentType, long id) {
+        super(id);
+        this.name = name;
+        this.number = number;
+        this.startDate = startDate;
+        this.description = description;
+        this.documentType = documentType;
+    }
+
+    public Document(String name, String number, Date startDate, String description, String file, DocumentType documentType, long id) {
+        super(id);
+        this.name = name;
+        this.number = number;
+        this.startDate = startDate;
+        this.description = description;
+         this.file = file;
+        this.documentType = documentType;
+    }
 
 //<editor-fold defaultstate="collapsed" desc="get-set">
     //<editor-fold defaultstate="collapsed" desc="name, number, startDate - идентификационные данные документа">
     /**
      * Название документа
+     *
      * @return Название документа
      */
     public String getName() {
         return name;
     }
-    
+
     /**
      * Название документа
+     *
      * @param name Название документа
      */
     public void setName(String name) {
         this.name = name;
     }
-    
+
     /**
      * номер документа
+     *
      * @return номер документа
      */
     public String getNumber() {
         return number;
     }
-    
+
     /**
      * номер документа
+     *
      * @param number номер документа
      */
     public void setNumber(String number) {
         this.number = number;
     }
-    
+
     /**
      * дата подписания
+     *
      * @return дата подписания
      */
     public Date getStartDate() {
         return startDate;
     }
-    
+
     /**
      * дата подписания
+     *
      * @param startDate дата подписания
      */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="desription, file - содержание документа">
     /**
      * краткое описание
+     *
      * @return краткое описание
      */
     public String getDescription() {
         return description;
     }
-    
+
     /**
      * краткое описание
+     *
      * @param description краткое описание
      */
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     /**
      * прикрепленный файл
+     *
      * @return прикрепленный файл
      */
     public String getFile() {
         return file;
     }
-    
+
     /**
      * прикрепленный файл
+     *
      * @param file прикрепленный файл
      */
     public void setFile(String file) {
         this.file = file;
     }
 //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="documentType - тип документа">
     /**
      * тип документа
+     *
      * @return тип документа
      */
     public DocumentType getDocumentType() {
         return documentType;
     }
-    
+
     /**
      * тип документа
+     *
      * @param documentType тип документа
      */
     public void setDocumentType(DocumentType documentType) {
@@ -192,6 +215,6 @@ public class Document extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Document{" +super.toString()+ "name=" + name + ", number=" + number + ", startDate=" + getStringService().getDateString(startDate) + ", description=" + description + ", file=" + file + /*", documentType=" +(documentType==null?" ":documentType.getName()) +*/ '}';
+        return "Document{" + super.toString() + "name=" + name + ", number=" + number + ", startDate=" + getStringService().getDateString(startDate) + ", description=" + description + ", file=" + file + /*", documentType=" +(documentType==null?" ":documentType.getName()) +*/ '}';
     }
 }

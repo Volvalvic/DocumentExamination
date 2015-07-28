@@ -10,7 +10,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <h1>Редактирование документа</h1>
-<sf:form method="POST" commandName="document"  enctype="multipart/form-data">
+<!-- target="_blank" открытие в новой вкладке-->
+<a href="<c:out value="${documentForm.filePath}"/>" target="_blank">Загрузить файл</a>
+<sf:form method="POST" commandName="documentForm"  enctype="multipart/form-data">
     <!--выриант отображения ошибок для всей формы сразу sf:errors path="*" element="div"/
     при таком раскладе удобно всем input проставить cssErrorClass, чобы сразу видеть в котором ошибка
     Лейблам класс оформления при ошибке можно проставить точно так же-->
@@ -18,9 +20,15 @@
     <sf:label path="number">Номер: </sf:label><sf:input path="number"/> <sf:errors path="number"/><br/>
         <!--Можно указывать type, таким образом получится использовать теги, специфичесике для Html5
         cssStyle - стиль Css-->
-    <sf:label path="description">Краткое описание:</sf:label> <sf:input path="description"/> <sf:errors path="description"/><br/>
-    <sf:label path="file">Краткое описание:</sf:label> <input type="file" name="file" accept="doc, docx, pdf"/> <br/>
-        <input type="submit" name="ОК"/>
+    <sf:label path="startDate">Дата подписания: </sf:label> <sf:input path="startDate" type="text" value="dd-mm-yy" onfocus="this.select();lcs(this)"  onclick="event.cancelBubble=true;this.select();lcs(this)" class="calendar3"/>  <sf:errors path="startDate"/><br/>
+    <sf:label path="description">Краткое описание:</sf:label> <sf:textarea path="description"/> <sf:errors path="description"/><br/>
+    <sf:label path="typeID">Тип документа:</sf:label> <sf:select path="typeID">  
+        <sf:options items="${types}" itemLabel="name" itemValue="id"/>
+    </sf:select></br>
+    <sf:input type="file" path="file" accept="application/msword, application/pdf, application/rtf, application/excel, image/bmp, image/gif, image/jpeg, image/png, image/tiff"/> 
+
+    <sf:hidden path="fileName"/><br/>
+    <input type="submit" name="ОК"/>
 
 
 </sf:form>

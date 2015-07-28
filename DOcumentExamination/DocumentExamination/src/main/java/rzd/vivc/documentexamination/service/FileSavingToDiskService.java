@@ -5,11 +5,13 @@
  */
 package rzd.vivc.documentexamination.service;
 
+import com.sun.jndi.url.dns.dnsURLContextFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 import javax.servlet.http.Part;
 import org.springframework.stereotype.Component;
+import rzd.vivc.documentexamination.form.DocumentForm;
 
 /**
  * Сохраняет на диск загруженные файлы
@@ -20,11 +22,11 @@ import org.springframework.stereotype.Component;
 public class FileSavingToDiskService implements FileSavingService {
 
     @Override
-    public String saveUploadedFile(Part file) throws IOException {
+    public void saveUploadedFile(DocumentForm document) throws IOException {
+        Part file = document.getFile();
 
-        if (file==null||file.getSize() < 0) {
-            //если файл не был загружен, в качестве его названия возвращаем пустую строку
-            return "";
+        if (file == null || file.getSize() < 0||file.getSubmittedFileName().isEmpty()) {
+            //если файл не был загружен, нет необходимости менять имя файла
         } else {
             String address = "C:" + File.separator + File.separator + "documents" + File.separator;
             String name = file.getSubmittedFileName();
@@ -33,8 +35,19 @@ public class FileSavingToDiskService implements FileSavingService {
                 name = split[split.length - 2] + UUID.randomUUID().toString() + split[split.length - 1];
             }
             file.write(address + name);
-            return name;
+            document.setFileName(name);
         }
     }
 
+    @Override
+    public String getFileLink(String fileName) {
+        return "/docs/"+fileName;
+    }
+
+    @Override
+    public void addFileLink(DocumentForm document) {
+        document.setFilePath(getFileLink(document.getFileName()));
+    }
+
+    
 }
