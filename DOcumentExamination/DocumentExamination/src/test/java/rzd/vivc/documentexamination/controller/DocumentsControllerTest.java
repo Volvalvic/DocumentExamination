@@ -26,7 +26,7 @@ public class DocumentsControllerTest {
      *
      * @throws Exception
      */
-    @Test
+
     public void testFindAll() throws Exception {
         System.out.println("allDocs");
 
@@ -59,7 +59,7 @@ public class DocumentsControllerTest {
      *
      * @throws Exception
      */
-    @Test
+
     public void testFindByType() throws Exception {
         System.out.println("typeDocs");
 
@@ -92,7 +92,7 @@ public class DocumentsControllerTest {
      *
      * @throws Exception
      */
-    @Test
+
     public void testFindOne() throws Exception {
         System.out.println("oneDocs");
 

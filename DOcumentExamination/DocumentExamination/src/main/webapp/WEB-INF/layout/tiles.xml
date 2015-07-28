@@ -25,4 +25,22 @@
         <put-attribute name="body" value="/WEB-INF/layout/document.jsp" />
     </definition>
 
+
+    <definition name="usersForDocument" extends="template">
+        <put-attribute name="body" value="/WEB-INF/layout/usersForDocument.jsp" />
+    </definition>
+    
+    
+    <definition name="reportDoc" extends="template">
+        <put-attribute name="body" value="/WEB-INF/layout/reportDoc.jsp" />
+    </definition>
+    
+    <definition name="documentRead" extends="template">
+        <put-attribute name="body" value="/WEB-INF/layout/documentRead.jsp" />
+    </definition>
+    
+    <definition name="documentsForUser" extends="template">
+        <put-attribute name="body" value="/WEB-INF/layout/documentsForUser.jsp" />
+    </definition>
+
 </tiles-definitions>

@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import rzd.vivc.documentexamination.controller.exception.FileLoadingException;
 import rzd.vivc.documentexamination.form.DocumentForm;
 import rzd.vivc.documentexamination.repository.DocumentTypeRepository;
+import rzd.vivc.documentexamination.service.DocumentAdditionalSavingServicesRepository;
 import rzd.vivc.documentexamination.service.FileSavingService;
 
 /**
@@ -44,6 +45,9 @@ public class DocumentController {
     //для сохранения загруженных файлов
     @Autowired
     private FileSavingService fileSavingService;
+    
+    @Autowired
+    private DocumentAdditionalSavingServicesRepository documentAdditionalSavingServicesRepository;
 
     /**
      * конструктор
@@ -143,7 +147,7 @@ public class DocumentController {
         }
         Document dtoDocument = document.toDocument();
         dtoDocument.setId(documentID);
-        Document saved = documentRepository.save(dtoDocument);
+        Document saved = documentAdditionalSavingServicesRepository.saveWythExaminations(dtoDocument);
         model.addAttribute("documentID", saved.getId());
         //ключ в модели будет document. этот атрибут сохранится в модели приредиректе
         model.addFlashAttribute(saved);

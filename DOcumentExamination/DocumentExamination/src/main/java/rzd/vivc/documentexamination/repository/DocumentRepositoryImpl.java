@@ -19,7 +19,9 @@ import rzd.vivc.documentexamination.model.dto.documents.DocumentType;
  *
  * @author VVolgina
  */
-public class DocumentRepositoryImpl implements DocumentFilter {
+public class DocumentRepositoryImpl implements DocumentFilter{
+    
+    
 
     @PersistenceContext
     private EntityManager em;
@@ -85,5 +87,5 @@ public class DocumentRepositoryImpl implements DocumentFilter {
         return (List<Document>) createQuery.getResultList();
   
     }
-
+    
 }

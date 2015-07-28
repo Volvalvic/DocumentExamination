@@ -5,32 +5,27 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <nav>
     <ul>
-        <li class="first">
-            <a href="#">Resources</a>
+        <li>
+            <s:url value="/documents" var="backURL"/>
+            <a href="${backURL}">Документы</a>
         </li>
         <li>
-            <a href="#">Links</a>
+            <s:url value="/reportDoc" var="rep1URL"/>
+            <a href="${rep1URL}">Отчет по документам</a>
+
         </li>
         <li>
-            <a href="#">Services</a>
+            <s:url value="/documentsForUser" var="rep2URL"/>
+            <a href="${rep2URL}">Отчет по моим документам</a>
         </li>
         <li>
-            <a href="#">About</a>
+             <s:url value="/document/edit/${document.id}" var="editURL"/>
+            <a href="${editURL}">Добавить документ</a>
         </li>
-        <li>
-            <a href="#">Downloads</a>
-        </li>
-        <li>
-            <a href="#">Blog</a>
-        </li>
-        <li>
-            <a href="#">Portfolio</a>
-        </li>
-        <li>
-            <a href="#">Contact</a>
-        </li>
+      
     </ul>
 </nav>
 

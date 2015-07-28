@@ -15,7 +15,7 @@
         <meta name="keywords" content="ЕСПП, документ, распоряжение, телеграмма, ознакомление, отчет, контроль"/>
         <meta name="description" content="Система контроля ознакомления с документами для ЕСПП"/>
         <meta name="author" content="Волгина Валерия Викторовна, Рабееах Светлана Александровна"/>
-        <title>АС КИМ КЦ</title>       
+        <title>Контроль ознакомления</title>       
         <!--[if lt IE 9]>
 <script>
 var e = ("article,aside,figcaption,figure,footer,header,hgroup,nav,section,time").split(',');

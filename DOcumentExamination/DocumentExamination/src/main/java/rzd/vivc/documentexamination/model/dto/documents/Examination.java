@@ -49,7 +49,7 @@ public class Examination implements Serializable {
 
     //флаг, ознакомлен, или нет
     @Column(name = "CHECKED")
-    private boolean checked;
+    private boolean checked=false;
 
     //дата ознакомления
     @Column(name = "START_DATE")
@@ -130,8 +130,13 @@ public class Examination implements Serializable {
      *
      * @param checked флаг, ознакомлен, или нет
      */
-    public void setChecked(boolean checked) {
+    public void setChecked(boolean checked) {  
+        //TODO Засунуть это в аспект при сохранении
+        if(!this.checked && checked){
+            startDate=new Date();
+        }
         this.checked = checked;
+
     }
 //</editor-fold>
 
@@ -155,6 +160,16 @@ public class Examination implements Serializable {
 //</editor-fold>
     
     //</editor-fold>
+
+    public Examination(long documentID, long userID) {
+        document=new Document(documentID);
+        user=new User(userID);
+    }
+
+    public Examination() {
+    }
+    
+    
 
     @Override
     public String toString() {

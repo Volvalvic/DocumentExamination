@@ -41,7 +41,7 @@ public class FileSavingToDiskService implements FileSavingService {
 
     @Override
     public String getFileLink(String fileName) {
-        return "/docs/"+fileName;
+        return fileName==null||fileName.isEmpty()?"":"docs/"+fileName;
     }
 
     @Override

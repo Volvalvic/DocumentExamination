@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import rzd.vivc.documentexamination.model.dto.documents.Document;
 import rzd.vivc.documentexamination.repository.DocumentRepository;
+import rzd.vivc.documentexamination.service.FileSavingService;
 
 /**
  * Контроллер для страницы documents.jsp
@@ -23,6 +24,9 @@ import rzd.vivc.documentexamination.repository.DocumentRepository;
 public class DocumentsController {
 
     private final DocumentRepository documentRepository;
+    
+     @Autowired
+    private FileSavingService fileSavingService;
 
     /**
      * Конструктор. Репозиторий вводится через него в тестовых целях
@@ -68,7 +72,11 @@ public class DocumentsController {
     public String document(@PathVariable(value = "documentID") long documentID, Model model) {
         //документ может быть уже в готовом виде засунут в модель после сохранения
         if (!model.containsAttribute("document")) {
-            model.addAttribute(documentRepository.findOne(documentID));
+            Document findOne = documentRepository.findOne(documentID);
+            model.addAttribute(findOne);
+            model.addAttribute("link", fileSavingService.getFileLink(findOne.getFile()));
+        }else{
+            model.addAttribute("link", fileSavingService.getFileLink(((Document)model.asMap().get("document")).getFile()));
         }
         return "document";
     }

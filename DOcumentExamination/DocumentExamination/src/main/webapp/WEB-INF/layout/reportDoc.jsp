@@ -13,7 +13,7 @@
         <th>Название документа</th>
         <th class="grey">Номер документа</th>
         <th class="grey">Тип документа</th>
-        <th class="green">Подробное описание</th>
+        <th class="green">Ознакомленные</th>
     </tr>
     <c:forEach items="${documentList}" var="document">
         <tr id="document_<c:out value="${document.id}"/>">
@@ -28,10 +28,11 @@
                 <c:out value="${document.documentType.name}"/>
             </td>  
             <td class="green">
-        <s:url value="/documents/${document.id}" var="backURL"/>
-        <a href="${backURL}">Просмотр</a>
+        <s:url value="/usersForDocument/${document.id}" var="backURL"/>
+        <a href="${backURL}">Ознакомленные</a>
     </td>
 </tr>
 </c:forEach>
 </table>
+
 

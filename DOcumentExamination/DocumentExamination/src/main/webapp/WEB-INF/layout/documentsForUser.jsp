@@ -12,23 +12,23 @@
     <tr >
         <th>Название документа</th>
         <th class="grey">Номер документа</th>
-        <th class="grey">Тип документа</th>
+        <th class="grey">Ознакомлен</th>
         <th class="green">Подробное описание</th>
     </tr>
-    <c:forEach items="${documentList}" var="document">
-        <tr id="document_<c:out value="${document.id}"/>">
+    <c:forEach items="${examinationLineList}" var="examination">
+        <tr id="document_<c:out value="${examination.id}"/>">
             <td>
-                <c:out value="${document.name}"/>
+                <c:out value="${examination.name}"/>
             </td> 
             <td class="grey">
-                <c:out value="${document.number}"/>
+                <c:out value="${examination.number}"/>
             </td>
 
             <td class="grey">
-                <c:out value="${document.documentType.name}"/>
+                <img src="<c:url value="/resources/images/${examination.picture}"/>" alt="" class="imageSmall"/>
             </td>  
             <td class="green">
-        <s:url value="/documents/${document.id}" var="backURL"/>
+        <s:url value="/documentRead/${examination.id}" var="backURL"/>
         <a href="${backURL}">Просмотр</a>
     </td>
 </tr>

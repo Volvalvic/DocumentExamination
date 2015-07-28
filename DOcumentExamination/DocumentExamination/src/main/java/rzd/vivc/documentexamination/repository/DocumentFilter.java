@@ -25,4 +25,6 @@ public interface DocumentFilter {
      * @return список документов
      */
     List<Document> findFiltered(String name, String number, Date startDate, String description, long documentTypeID);
+    
+
 }
