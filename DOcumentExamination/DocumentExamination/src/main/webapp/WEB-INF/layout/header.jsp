@@ -26,6 +26,15 @@
             <a href="${editURL}">Добавить документ</a>
         </li>
       
+         <li>
+             <s:url value="/users" var="usersURL"/>
+            <a href="${usersURL}">Пользователи</a>
+        </li>
+        
+        <li>
+             <s:url value="/user/edit" var="usersURL"/>
+            <a href="${usersURL}">Добавить пользователя</a>
+        </li>
     </ul>
 </nav>
 

@@ -1,21 +1,24 @@
 package rzd.vivc.documentexamination.model.dto.security;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.validator.constraints.Email;
 import rzd.vivc.documentexamination.model.dto.base.BaseEntity;
+import rzd.vivc.documentexamination.model.dto.users.User;
 
 /**
- * Описание аккаунта пользователя. логин-пароль, права(тип пользователя) Для
- * БД. Анотации под хибернейт
+ * Описание аккаунта пользователя. логин-пароль, права(тип пользователя) Для БД.
+ * Анотации под хибернейт
  *
  * @author Zdislava
  *
@@ -36,27 +39,31 @@ public class Account extends BaseEntity implements Serializable {
     @NaturalId(mutable = true)
     @Column(name = "LOGIN", length = 30)
     @NotNull(message = "{valid.exists}")
-    @Size(min = 5,max=30, message = "{valid.size}")
+    @Size(min = 5, max = 30, message = "{valid.size}")
     private String login;
     //пароль
     @Column(name = "PASSWORD", length = 30)
     @NotNull(message = "{valid.exists}")
-    @Size(min = 5,max=30, message = "{valid.size}")
+    @Size(min = 5, max = 30, message = "{valid.size}")
     private String password;
 
     //тип пользователя
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "USER_TYPE_ID", nullable = false)
     private Role userType;
+
+    //пользователь, которому принадлежит аккаунт
+    @OneToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
     //</editor-fold>
-    
+
     public Account() {
         super();
     }
 
     //<editor-fold defaultstate="collapsed" desc="get-set">
 //<editor-fold defaultstate="collapsed" desc="email - контактная информация">
-   
     /**
      * E-mail
      *
@@ -133,8 +140,25 @@ public class Account extends BaseEntity implements Serializable {
         this.userType = userType;
     }
 
-//</editor-fold>
+    /**
+     * пользователь, которому принадлежит аккаунт
+     *
+     * @return пользователь, которому принадлежит аккаунт
+     */
+    public User getUser() {
+        return user;
+    }
 
+    /**
+     * пользователь, которому принадлежит аккаунт
+     *
+     * @param user пользователь, которому принадлежит аккаунт
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+//</editor-fold>
     //</editor-fold>
     @Override
     public String toString() {

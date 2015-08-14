@@ -6,15 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import rzd.vivc.documentexamination.model.dto.base.BaseEntity;
+import rzd.vivc.documentexamination.model.dto.security.Account;
 
 /**
- * Описание пользователя системы. ФИО Для
- * БД. Анотации под хибернейт
+ * Описание пользователя системы. ФИО Для БД. Анотации под хибернейт
  *
  * @author Zdislava
  *
@@ -27,33 +28,37 @@ public class User extends BaseEntity implements Serializable {
     //имя
     @Column(name = "NAME", length = 100)
     @NotNull(message = "{valid.exists}")
-    @Size(min = 1,max=100)
+    @Size(min = 1, max = 100)
     private String name = "";
     //фамилия
     @Column(name = "SURNAME", length = 100)
     @NotNull(message = "{valid.exists}")
-    @Size(min = 1,max=100)
+    @Size(min = 1, max = 100)
     private String surname = "";
     //отчество
     @Column(name = "PATRONOMICNAME", length = 100)
     @NotNull(message = "{valid.exists}")
-    @Size(min = 1,max=100, message = "{valid.size}")
+    @Size(min = 1, max = 100, message = "{valid.size}")
     private String patronomicname = "";
 
     //номер телефона
     @Column(name = "PHONE", length = 100)
-    @Size(max=100, message = "{valid.size}")
+    @Size(max = 100, message = "{valid.size}")
     private String phoneNumber = "";
 
     //дополнительная информация
     @Column(name = "ADDITIONAL_INFO", length = 200)
-    @Size(max=200, message = "{valid.size}")
+    @Size(max = 200, message = "{valid.size}")
     private String additionalInfo = "";
 
     //подразделение
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department", nullable = false)
     private Department department = new Department();
+
+    //учетные данные
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Account account;
     //</editor-fold>
 
     public User() {
@@ -149,7 +154,7 @@ public class User extends BaseEntity implements Serializable {
         this.phoneNumber = phoneNumber;
     }
     //</editor-fold>
-    
+
 //<editor-fold defaultstate="collapsed" desc="additionalInfo - Дополнительная информация">
     /**
      * Дополнительная информация
@@ -190,6 +195,24 @@ public class User extends BaseEntity implements Serializable {
     }
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc="учетные данные">
+    /**
+     *учетные данные
+     * @return учетные данные
+     */
+    public Account getAccount() {
+        return account;
+    }
+    
+    /**
+     * учетные данные
+     * @param account учетные данные
+     */
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+//</editor-fold>
+   
     //</editor-fold>
     @Override
     public String toString() {

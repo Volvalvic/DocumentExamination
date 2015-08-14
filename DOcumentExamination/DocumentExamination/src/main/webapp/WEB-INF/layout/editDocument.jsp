@@ -37,7 +37,7 @@
             <li>
                 <!--????? ????????? type, ????? ??????? ????????? ???????????? ????, ????????????? ??? Html5
                            cssStyle - ????? Css-->
-                <sf:label path="startDate">Дата подписания: </sf:label> <sf:input cssClass="on_top" path="startDate" type="text" value="dd-mm-yy" onfocus="this.select();lcs(this)"  onclick="event.cancelBubble=true;this.select();lcs(this)" class="calendar3"/>  <sf:errors path="startDate"/>
+                <sf:label path="startDate">Дата подписания: </sf:label> <sf:input cssClass="on_top" path="startDate" type="text" value="dd-mm-yy" onfocus="this.select();lcs(this)"  onclick="event.cancelBubble=true;this.select();lcs(this)" class="calendar3"/>  <sf:errors path="startDate" />
                 </li>
                 <li>
                 <sf:input type="file" path="file" accept="application/msword, application/pdf, application/rtf, application/excel, image/bmp, image/gif, image/jpeg, image/png, image/tiff"/> 

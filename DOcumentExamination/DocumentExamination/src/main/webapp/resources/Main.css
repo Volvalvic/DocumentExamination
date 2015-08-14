@@ -228,7 +228,7 @@ footer{
     width:262px;
 }
 .contact_form textarea {padding:8px; width:300px;}
-.contact_form button, .contact_form a {margin-left:156px;}
+.contact_form button, .contact_form a {margin-left:10px;}
 .checkbox{
    height:30px; 
    width: 30px; 

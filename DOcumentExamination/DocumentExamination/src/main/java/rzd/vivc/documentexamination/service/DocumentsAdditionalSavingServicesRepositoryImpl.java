@@ -25,7 +25,7 @@ import rzd.vivc.documentexamination.repository.UserRepository;
 @Repository
 @Transactional
 public class DocumentsAdditionalSavingServicesRepositoryImpl implements DocumentAdditionalSavingServicesRepository {
-
+///TODO переделать, объединив все операции в один класс
     @PersistenceContext
     private EntityManager em;
     @Autowired

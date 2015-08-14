@@ -42,5 +42,17 @@
     <definition name="documentsForUser" extends="template">
         <put-attribute name="body" value="/WEB-INF/layout/documentsForUser.jsp" />
     </definition>
+    
+    <definition name="editUser" extends="template">
+        <put-attribute name="body" value="/WEB-INF/layout/editUser.jsp" />
+    </definition>
+    
+    <definition name="users" extends="template">
+        <put-attribute name="body" value="/WEB-INF/layout/users.jsp" />
+    </definition>
+    
+    <definition name="user" extends="template">
+        <put-attribute name="body" value="/WEB-INF/layout/user.jsp" />
+    </definition>
 
 </tiles-definitions>

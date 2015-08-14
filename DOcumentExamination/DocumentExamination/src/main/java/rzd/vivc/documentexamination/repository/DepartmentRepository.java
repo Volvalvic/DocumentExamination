@@ -6,13 +6,13 @@
 package rzd.vivc.documentexamination.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import rzd.vivc.documentexamination.model.dto.users.User;
+import rzd.vivc.documentexamination.model.dto.users.Department;
 
 /**
- * Интерфейс репозитория для пользователей {@link User}
+ * Интерфейс репозитория для отделов {@link Department}
  *
  * @author VVolgina
  */
-public interface UserRepository extends JpaRepository<User, Long>, UserFilter{
+public interface DepartmentRepository extends JpaRepository<Department, Long>{
 
 }
