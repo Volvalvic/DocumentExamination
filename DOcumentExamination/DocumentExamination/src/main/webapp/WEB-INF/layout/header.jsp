@@ -6,35 +6,45 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <nav>
     <ul>
+
+        <security:authorize access="hasRole('ROLE_DIRECTOR')">
         <li>
             <s:url value="/documents" var="backURL"/>
             <a href="${backURL}">Документы</a>
         </li>
+        </security:authorize>
+         <security:authorize access="hasRole('ROLE_DIRECTOR')">
         <li>
             <s:url value="/reportDoc" var="rep1URL"/>
             <a href="${rep1URL}">Отчет по документам</a>
 
         </li>
+         </security:authorize>
         <li>
             <s:url value="/documentsForUser" var="rep2URL"/>
             <a href="${rep2URL}">Отчет по моим документам</a>
         </li>
+         <security:authorize access="hasRole('ROLE_DIRECTOR')">
         <li>
-             <s:url value="/document/edit/${document.id}" var="editURL"/>
+            <s:url value="/document/edit/${document.id}" var="editURL"/>
             <a href="${editURL}">Добавить документ</a>
         </li>
-      
-         <li>
-             <s:url value="/users" var="usersURL"/>
+         </security:authorize>
+         <security:authorize access="hasRole('ROLE_ADMIN')">
+        <li>
+            <s:url value="/users" var="usersURL"/>
             <a href="${usersURL}">Пользователи</a>
         </li>
-        
+         </security:authorize>
+        <security:authorize access="hasRole('ROLE_ADMIN')">
         <li>
-             <s:url value="/user/edit" var="usersURL"/>
+            <s:url value="/user/edit" var="usersURL"/>
             <a href="${usersURL}">Добавить пользователя</a>
         </li>
+        </security:authorize>
     </ul>
 </nav>
 
@@ -42,14 +52,16 @@
     <div id="logo" class="logo">
         <h1>Контроль ознакомления с документами</h1>
     </div>
+    <security:authorize access="isAuthenticated()">
     <div id="logout" class="logout">
-        <form action="" method="post">
+
             <div>
-                <label for="exit" class="text" >Иванов Иван Иванович</label>
-                <input type="button" name="exit" class="text" id="exit" value="Выход"/>
+                <label for="exit" class="text" ><security:authentication property="principal.name"/></label>
+                <s:url value="/logout" var="exitURL"/>
+                <a href="${exit}">Выход</a>
             </div>
-        </form>
     </div>
+    </security:authorize>
 </div>
 
 <div class="banner">

@@ -19,4 +19,5 @@ import rzd.vivc.documentexamination.model.dto.users.User;
 @Transactional(readOnly = true)
 public interface AccountRepository extends JpaRepository<Account, Long>, AccountFilter{
     Account findByUser(User user);
+    Account findByLogin(String login);
 }

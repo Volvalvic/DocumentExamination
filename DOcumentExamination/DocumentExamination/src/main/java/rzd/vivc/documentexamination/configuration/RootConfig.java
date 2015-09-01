@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
  * @author VVolgina
  */
 @Configuration
-@Import(SpringDateConfigMySQL.class)
+@Import({SpringDateConfigMySQL.class, WebSecurityConfig.class})
 @ComponentScan(basePackages = {"rzd.vivc.documentexamination.service"})
 public class RootConfig {
 }
