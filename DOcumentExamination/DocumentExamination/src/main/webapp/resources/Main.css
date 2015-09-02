@@ -98,10 +98,12 @@ header {
     left: 28px;
     height: 100%;
     line-height: 100%;
+    
 }
 
 .logo h1 {
-    font-size: 30px;
+    font-size: 45px;
+    
 }
 
 .logout {
@@ -112,10 +114,14 @@ header {
     line-height: 50%;
 }
 
-.logout label.text, .logout input.text {
+.logout label.text, .logout input.text, .logout a.text  {
     padding: 10px;
     border: 0;
     color: #777;
+}
+
+.logout a.text  {
+    color: #292929;
 }
 
 .logout label.text{
@@ -197,7 +203,7 @@ article{
 
 }
 
-article h1{
+article h1, article h2{
 color: #005B6D;
 }
 
@@ -244,7 +250,7 @@ footer{
     transition: padding .25s;
 } 
 
-button.submit , .contact_form a{
+button.submit , .contact_form a, a.submit{
 	background-color: #005B6D;
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#005B6D));
 	background: -webkit-linear-gradient(top, #ffffff, #005B6D);

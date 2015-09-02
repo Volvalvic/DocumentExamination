@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
@@ -53,5 +54,11 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         tiles.setCheckRefresh(true);
         return tiles;
    }
+    
+    @Override
+    //для страеицы авторизации прописываем, что должно вызываться созданное вручную view login
+  public void addViewControllers(ViewControllerRegistry registry) {
+    registry.addViewController("/login").setViewName("login");
+  }
     
 }

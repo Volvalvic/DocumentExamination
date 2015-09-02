@@ -23,10 +23,12 @@
 
         </li>
          </security:authorize>
+         <security:authorize access="hasRole('ROLE_USER')">
         <li>
             <s:url value="/documentsForUser" var="rep2URL"/>
             <a href="${rep2URL}">Отчет по моим документам</a>
         </li>
+         </security:authorize>
          <security:authorize access="hasRole('ROLE_DIRECTOR')">
         <li>
             <s:url value="/document/edit/${document.id}" var="editURL"/>
@@ -56,9 +58,9 @@
     <div id="logout" class="logout">
 
             <div>
-                <label for="exit" class="text" ><security:authentication property="principal.name"/></label>
+                <label for="exit" class="text" ><security:authentication property="principal.username"/></label>
                 <s:url value="/logout" var="exitURL"/>
-                <a href="${exit}">Выход</a>
+                <a class="text" href="${exitURL}">Выход</a>
             </div>
     </div>
     </security:authorize>
@@ -66,7 +68,7 @@
 
 <div class="banner">
     <div class="captions">
-        <h2>Lorem ipsum dolor nullam consequat magna sed phasellus.</h2>
+        <h2>Ознакомление с документами для КЦ ЕСПП</h2>
     </div>
     <img src="<c:url value="/resources/images/banner.jpg"/>" alt="" class="image"/>
 </div>

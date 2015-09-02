@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import rzd.vivc.documentexamination.repository.AccountRepository;
 import rzd.vivc.documentexamination.service.UserService;
 
@@ -34,13 +35,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().and()
-                 .logout().logoutSuccessUrl("/").and()
-                .authorizeRequests()
-                .antMatchers("/documents**").hasRole("DIRECTOR")
-                .antMatchers("/users**").hasRole("ADMIN")
-                .antMatchers("/documentsForUser**").hasRole("USER")
-                .anyRequest().permitAll();
+        http.formLogin().loginPage("/login")
+             .and()
+             .logout().logoutSuccessUrl("/").logoutRequestMatcher(new AntPathRequestMatcher("/logout")).deleteCookies("remove").invalidateHttpSession(true)
+             .and()
+             .authorizeRequests()
+                    .antMatchers("/documents**").hasRole("DIRECTOR")
+                    .antMatchers("/users**").hasRole("ADMIN")
+                    .antMatchers("/documentsForUser**").hasRole("USER")
+                    .anyRequest().permitAll()
+            /** .and()
+                //передаем личные данные о пользователе, поэтому передаем их через https. но сперва надо настроить https
+             .requiresChannel().antMatchers("/users/**","/user**","/login").requiresSecure()**/;
     }
 
 }
