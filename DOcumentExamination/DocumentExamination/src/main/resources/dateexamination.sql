@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2015-08-14 10:24:35
+Date: 2015-09-02 11:00:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,13 +36,15 @@ CREATE TABLE `account` (
   KEY `FK_87y8v1ijgrfpj5jken8k56llc` (`user_update`),
   KEY `FK_92mtnvykool14rinqcpurikw1` (`USER_TYPE_ID`),
   KEY `FK_lpll0fwdfl4eqdqqc5rhpprjn` (`USER_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=cp1251;
 
 -- ----------------------------
 -- Records of account
 -- ----------------------------
 INSERT INTO `account` VALUES ('1', '2015-04-24 10:53:56', '2015-04-24 10:53:53', 'vvolgina@serw.rzd', 'admin', 'admin', '1', '1', '1', '1');
 INSERT INTO `account` VALUES ('2', '2015-08-14 09:15:47', '2015-08-14 09:15:47', 'ivanov@bk.ru', 'ivanov', 'ivanov', '1', '1', '1', '2');
+INSERT INTO `account` VALUES ('4', '2015-09-01 13:49:58', '2015-09-01 13:50:01', 'ss@bl.ry', 'user', 'user', '1', '1', '2', null);
+INSERT INTO `account` VALUES ('5', '2015-09-01 13:50:28', '2015-09-01 13:50:31', 're@gh.ret', 'director', 'director', '1', '1', '2', null);
 
 -- ----------------------------
 -- Table structure for `department`
@@ -164,15 +166,18 @@ CREATE TABLE `role` (
   `NAME` varchar(255) DEFAULT NULL,
   `user_create` bigint(20) NOT NULL,
   `user_update` bigint(20) NOT NULL,
+  `AUTORITY` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_e6v15pumhx310ch8bd4dqt8de` (`user_create`),
   KEY `FK_pnkte8tntxwjb88wp03ypfauh` (`user_update`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=cp1251;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=cp1251;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `role` VALUES ('1', '2015-04-24 10:50:54', '2015-04-24 10:50:57', 'Админстратор', '1', '1');
+INSERT INTO `role` VALUES ('1', '2015-04-24 10:50:54', '2015-04-24 10:50:57', 'Админстратор', '1', '1', 'ROLE_ADMIN');
+INSERT INTO `role` VALUES ('2', '2015-09-01 09:45:56', '2015-09-01 09:46:00', 'Пользователь', '1', '1', 'ROLE_USER');
+INSERT INTO `role` VALUES ('3', '2015-09-01 09:46:29', '2015-09-01 09:46:33', 'Начальник', '1', '1', 'ROLE_DIRECTOR');
 
 -- ----------------------------
 -- Table structure for `user`
