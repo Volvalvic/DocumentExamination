@@ -25,7 +25,7 @@
          </security:authorize>
          <security:authorize access="hasRole('ROLE_USER')">
         <li>
-            <s:url value="/documentsForUser" var="rep2URL"/>
+            <s:url value="/user/documentsForUser" var="rep2URL"/>
             <a href="${rep2URL}">Отчет по моим документам</a>
         </li>
          </security:authorize>

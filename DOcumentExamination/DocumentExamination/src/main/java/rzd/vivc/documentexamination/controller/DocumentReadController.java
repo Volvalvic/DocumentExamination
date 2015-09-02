@@ -5,28 +5,15 @@
  */
 package rzd.vivc.documentexamination.controller;
 
-import java.io.IOException;
-import javax.servlet.http.Part;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import org.springframework.web.bind.annotation.RequestPart;
-import rzd.vivc.documentexamination.model.dto.documents.Document;
-import rzd.vivc.documentexamination.repository.DocumentRepository;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import rzd.vivc.documentexamination.controller.exception.FileLoadingException;
-import rzd.vivc.documentexamination.form.DocumentForm;
 import rzd.vivc.documentexamination.model.dto.documents.Examination;
-import rzd.vivc.documentexamination.repository.DocumentTypeRepository;
 import rzd.vivc.documentexamination.repository.ExaminationRepository;
-import rzd.vivc.documentexamination.service.DocumentAdditionalSavingServicesRepository;
 import rzd.vivc.documentexamination.service.FileSavingService;
 
 /**
@@ -35,6 +22,7 @@ import rzd.vivc.documentexamination.service.FileSavingService;
  * @author VVolgina
  */
 @Controller
+@RequestMapping("/user/documentRead")
 public class DocumentReadController {
 
     //автоматически привязываемая реализация репозитория для документов
@@ -60,9 +48,8 @@ public class DocumentReadController {
      * @param model модель
      * @return view Для страницы редактирования
      */
-    @RequestMapping(value = "/documentRead/{documentID}", method = GET)
+    @RequestMapping(value = "/{documentID}", method = GET)
     public String view(@PathVariable(value = "documentID") long documentID, Model model) {
-             System.out.println("documentRead:");
         //на странице радактирования все поля привязаны к содержащемуся в 
         //модели атрибуту document, для корректной работы его надо добавить в модель
         Examination examination = examinationRepository.findWithDependencies(documentID);
@@ -87,12 +74,11 @@ public class DocumentReadController {
      * @return "redirect: /documents/{documentID}" если все впорядке, возврат на
      * форму, если есть ошибки
      */
-    @RequestMapping(value = "/documentRead/{documentID}", method = POST)
+    @RequestMapping(value = "/{documentID}", method = POST)
     public String processEdit(@PathVariable(value = "documentID") long documentID, Examination examination) {
-        System.out.println("documentRead:");
         Examination findOne = examinationRepository.findOne(documentID);
         findOne.setChecked(examination.isChecked());
         examinationRepository.save(findOne);
-        return "redirect:/documentsForUser";
+        return "redirect:/user/documentsForUser";
     }
 }

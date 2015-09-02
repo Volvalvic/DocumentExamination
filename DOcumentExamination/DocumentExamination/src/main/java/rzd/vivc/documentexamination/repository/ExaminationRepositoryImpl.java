@@ -22,9 +22,9 @@ public class ExaminationRepositoryImpl implements ExaminationFilter {
     private EntityManager em;
 
     @Override
-    public List<ExaminationLine> findByUser(long userID) {
-        Query createQuery = em.createQuery("SELECT new rzd.vivc.documentexamination.form.ExaminationLine(ex.id, ex.document.name, ex.document.number, ex.document.name, ex.checked, ex.document.id, ex.user.id, ex.startDate) FROM Examination ex WHERE ex.user.id=:userID");
-        createQuery.setParameter("userID", userID);
+    public List<ExaminationLine> findByUser(String login) {
+        Query createQuery = em.createQuery("SELECT new rzd.vivc.documentexamination.form.ExaminationLine(ex.id, ex.document.name, ex.document.number, ex.document.name, ex.checked, ex.document.id, ex.user.id, ex.startDate) FROM Examination ex WHERE ex.user.account.login LIKE :login");
+        createQuery.setParameter("login", login);
         return (List<ExaminationLine>) createQuery.getResultList();
     }
 

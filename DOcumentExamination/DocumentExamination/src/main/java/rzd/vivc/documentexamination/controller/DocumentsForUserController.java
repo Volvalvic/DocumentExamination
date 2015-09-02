@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import rzd.vivc.documentexamination.form.ExaminationLine;
 import rzd.vivc.documentexamination.repository.ExaminationRepository;
+import rzd.vivc.documentexamination.service.AuthenticationInfoService;
 
 /**
  * Контроллер для страницы documentsForUser.jsp
@@ -15,11 +17,13 @@ import rzd.vivc.documentexamination.repository.ExaminationRepository;
  * @author VVolgina
  */
 @Controller
-@RequestMapping("/documentsForUser")
+@RequestMapping("/user/documentsForUser")
 public class DocumentsForUserController {
     
      @Autowired
     private ExaminationRepository examinationRepository;
+     @Autowired
+     private AuthenticationInfoService authenticationInfoService;
 
     /**
      * Конструктор. 
@@ -33,11 +37,10 @@ public class DocumentsForUserController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    public List<ExaminationLine> examinations() {
-        List<ExaminationLine> findFiltered = examinationRepository.findByUser(1);
-
- 
-        return findFiltered;
+    public String examinations(Model model) {
+        List<ExaminationLine> findFiltered = examinationRepository.findByUser(authenticationInfoService.getLogin());
+        model.addAttribute(findFiltered);
+        return "documentsForUser";
     }
 
    

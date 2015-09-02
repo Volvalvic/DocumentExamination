@@ -43,19 +43,4 @@ public class UsersController {
         return findFiltered;
     }
 
-    /**
-     * При GET запросе c path parameter в модель добавляется пользователь с
-     * заданным id
-     *
-     * @param userID id пользователя
-     * @param model модель с данными для view
-     * @return user
-     */
-    @RequestMapping(value = "/{userID}", method = RequestMethod.GET)
-    public String user(@PathVariable(value = "userID") long userID, Model model) {
-
-        model.addAttribute(userRepository.findWithDependencies(userID));
-
-        return "user";
-    }
 }

@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
-
+<!-- Список документов для данного пользователя-->
 <table class="features-table">
     <tr >
         <th>Название документа</th>
@@ -28,7 +28,7 @@
                 <img src="<c:url value="/resources/images/${examination.picture}"/>" alt="" class="imageSmall"/>
             </td>  
             <td class="green">
-        <s:url value="/documentRead/${examination.id}" var="backURL"/>
+        <s:url value="/user/documentRead/${examination.id}" var="backURL"/>
         <a href="${backURL}">Просмотр</a>
     </td>
 </tr>

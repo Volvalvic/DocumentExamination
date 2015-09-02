@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import rzd.vivc.documentexamination.model.dto.security.Account;
@@ -51,6 +52,23 @@ public class UserController {
     @Autowired
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+    
+    
+    /**
+     * При GET запросе c path parameter в модель добавляется пользователь с
+     * заданным id
+     *
+     * @param userID id пользователя
+     * @param model модель с данными для view
+     * @return user
+     */
+    @RequestMapping(value = "/{userID}", method = RequestMethod.GET)
+    public String user(@PathVariable(value = "userID") long userID, Model model) {
+
+        model.addAttribute(userRepository.findWithDependencies(userID));
+
+        return "user";
     }
 
     /**

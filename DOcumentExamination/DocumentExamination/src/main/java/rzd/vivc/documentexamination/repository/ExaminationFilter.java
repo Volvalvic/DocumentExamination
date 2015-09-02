@@ -19,10 +19,10 @@ public interface ExaminationFilter {
 
     /**
      * Извлекает из БД список ознакомлений для пользователя
-     * @param userID польователь
+     * @param login логин вошедшего в систему пользователя
      * @return список документов
      */
-    List<ExaminationLine> findByUser(long userID);
+    List<ExaminationLine> findByUser(String login);
     Examination findWithDependencies(long id);
     List<ExaminationLine> findByDocument(long documentID);
 }

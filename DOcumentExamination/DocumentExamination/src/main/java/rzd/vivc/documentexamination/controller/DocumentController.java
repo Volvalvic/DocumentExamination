@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -57,6 +58,30 @@ public class DocumentController {
     @Autowired
     public DocumentController(DocumentRepository documentRepository) {
         this.documentRepository = documentRepository;
+    }
+    
+      /**
+     * При GET запросе c path parameter к /documents в модель добавляется
+     * документ с заданным id По ключу document - название берется в соотвествии
+     * с вовращаемым типом в качестве view берется document, так как эта строка
+     * возвращается
+     *
+     * @param documentID id Документа
+     * @param model модель с данными для view
+     * @return список документов
+     */
+    @RequestMapping(value = "/{documentID}", method = RequestMethod.GET)
+    //value="documentID" можно опустить, если название переменной и параметр в value в requestMapping савпадают
+    public String document(@PathVariable(value = "documentID") long documentID, Model model) {
+        //документ может быть уже в готовом виде засунут в модель после сохранения
+        if (!model.containsAttribute("document")) {
+            Document findOne = documentRepository.findOne(documentID);
+            model.addAttribute(findOne);
+            model.addAttribute("link", fileSavingService.getFileLink(findOne.getFile()));
+        }else{
+            model.addAttribute("link", fileSavingService.getFileLink(((Document)model.asMap().get("document")).getFile()));
+        }
+        return "document";
     }
 
     /**

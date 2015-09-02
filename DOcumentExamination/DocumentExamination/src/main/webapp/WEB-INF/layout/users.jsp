@@ -28,7 +28,7 @@
                 <c:out value="${user.patronomicname}"/>
             </td>  
             <td class="green">
-                <s:url value="/users/${user.id}" var="backURL"/>
+                <s:url value="/user/${user.id}" var="backURL"/>
                 <a href="${backURL}">Просмотр</a>
             </td>
         </tr>

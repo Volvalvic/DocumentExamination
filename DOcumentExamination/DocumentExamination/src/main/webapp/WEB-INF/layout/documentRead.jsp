@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<!--Просмотр документа пользователем при ознакомлении-->
 
 <div class="contact_form" >
     <ul>
@@ -44,7 +45,7 @@
         </li>
         <li>
 
-            <s:url value="/documentsForUser" var="backURL"/>
+            <s:url value="/user/documentsForUser" var="backURL"/>
             <a href="${backURL}">Назад</a>
         </li>
 
