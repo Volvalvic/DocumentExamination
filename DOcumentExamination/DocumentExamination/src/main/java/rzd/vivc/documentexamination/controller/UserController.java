@@ -146,7 +146,7 @@ public class UserController {
         User save = userRepository.save(account.getUser());
         Account saved = accountRepository.save(account);
         model.addAttribute("userID", save.getId());
-        return "redirect:/admin/users/{userID}";
+        return "redirect:/admin/user/{userID}";
     }
 
     /**

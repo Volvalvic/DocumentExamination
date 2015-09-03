@@ -38,13 +38,13 @@
 
         <security:authorize access="hasRole('ROLE_ADMIN')">
             <li>
-                <s:url value="/users" var="usersURL"/>
+                <s:url value="/admin/users" var="usersURL"/>
                 <a href="${usersURL}">Пользователи</a>
             </li>
         </security:authorize>
         <security:authorize access="hasRole('ROLE_ADMIN')">
             <li>
-                <s:url value="/user/edit" var="usersURL"/>
+                <s:url value="/admin/user/edit" var="usersURL"/>
                 <a href="${usersURL}">Добавить пользователя</a>
             </li>
         </security:authorize>

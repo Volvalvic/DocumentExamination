@@ -44,6 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/user/**").hasAnyRole("USER","DIRECTOR")
                     .anyRequest().permitAll()
+             .and()
+             .csrf().disable();
             /** .and()
                 //передаем личные данные о пользователе, поэтому передаем их через https. но сперва надо настроить https
              .requiresChannel().antMatchers("/users/**","/user**","/login").requiresSecure()**/;
