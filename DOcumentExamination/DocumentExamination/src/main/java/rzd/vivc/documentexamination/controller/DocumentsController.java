@@ -6,13 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import rzd.vivc.documentexamination.model.dto.documents.Document;
 import rzd.vivc.documentexamination.repository.DocumentRepository;
-import rzd.vivc.documentexamination.service.FileSavingService;
 
 /**
  * Контроллер для страницы documents.jsp
@@ -20,13 +18,10 @@ import rzd.vivc.documentexamination.service.FileSavingService;
  * @author VVolgina
  */
 @Controller
-@RequestMapping("/documents")
+@RequestMapping("/director/documents")
 public class DocumentsController {
 
     private final DocumentRepository documentRepository;
-    
-     @Autowired
-    private FileSavingService fileSavingService;
 
     /**
      * Конструктор. Репозиторий вводится через него в тестовых целях
@@ -52,9 +47,10 @@ public class DocumentsController {
      * @return список документов
      */
     @RequestMapping(method = RequestMethod.GET)
-    public List<Document> documents(@RequestParam(value = "type", defaultValue = "0") long type, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "number", required = false) String number, @RequestParam(value = "description", required = false) String description, @RequestParam(value = "date", required = false) Date date) {
+    public String documents(@RequestParam(value = "type", defaultValue = "0") long type, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "number", required = false) String number, @RequestParam(value = "description", required = false) String description, @RequestParam(value = "date", required = false) Date date, Model model) {
         List<Document> findFiltered = documentRepository.findFiltered(name, number, date, description, type);
-        return findFiltered;
+        model.addAttribute(findFiltered);
+        return "documents";
     }
 
   

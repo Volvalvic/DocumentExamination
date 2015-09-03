@@ -28,7 +28,7 @@
                 <c:out value="${document.documentType.name}"/>
             </td>  
             <td class="green">
-        <s:url value="/document/${document.id}" var="backURL"/>
+        <s:url value="/director/document/${document.id}" var="backURL"/>
         <a href="${backURL}">Просмотр</a>
     </td>
 </tr>

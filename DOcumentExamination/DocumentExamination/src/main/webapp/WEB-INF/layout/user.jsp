@@ -41,9 +41,9 @@
         </li>
         
         <li>
-            <s:url value="/users" var="backURL"/>
+            <s:url value="/admin/users" var="backURL"/>
             <a href="${backURL}">Назад</a>
-            <s:url value="/user/edit/${user.id}" var="editURL"/>
+            <s:url value="/admin/user/edit/${user.id}" var="editURL"/>
             <a href="${editURL}">Перейти к редактированию</a>
 
         </li>

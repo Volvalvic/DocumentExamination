@@ -34,7 +34,7 @@ import rzd.vivc.documentexamination.service.FileSavingService;
  * @author VVolgina
  */
 @Controller
-@RequestMapping("/document")
+@RequestMapping("/director/document")
 public class DocumentController {
 
     //автоматически привязываемая реализация репозитория для документов
@@ -176,7 +176,7 @@ public class DocumentController {
         model.addAttribute("documentID", saved.getId());
         //ключ в модели будет document. этот атрибут сохранится в модели приредиректе
         model.addFlashAttribute(saved);
-        return "redirect:/documents/{documentID}";
+        return "redirect:/director/documents/{documentID}";
     }
     
     /**

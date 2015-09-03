@@ -29,7 +29,7 @@ import rzd.vivc.documentexamination.repository.UserRepository;
  * @author VVolgina
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController {
 
     //автоматически привязываемая реализация репозитория для пользователей
@@ -146,7 +146,7 @@ public class UserController {
         User save = userRepository.save(account.getUser());
         Account saved = accountRepository.save(account);
         model.addAttribute("userID", save.getId());
-        return "redirect:/users/{userID}";
+        return "redirect:/admin/users/{userID}";
     }
 
     /**

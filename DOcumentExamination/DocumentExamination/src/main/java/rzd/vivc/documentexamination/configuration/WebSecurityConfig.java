@@ -40,9 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
              .logout().logoutSuccessUrl("/").logoutRequestMatcher(new AntPathRequestMatcher("/logout")).deleteCookies("remove").invalidateHttpSession(true)
              .and()
              .authorizeRequests()
-                    .antMatchers("/documents**").hasRole("DIRECTOR")
-                    .antMatchers("/users**").hasRole("ADMIN")
-                    .antMatchers("/user/**").hasRole("USER")
+                    .antMatchers("/director/**").hasRole("DIRECTOR")
+                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/user/**").hasAnyRole("USER","DIRECTOR")
                     .anyRequest().permitAll()
             /** .and()
                 //передаем личные данные о пользователе, поэтому передаем их через https. но сперва надо настроить https

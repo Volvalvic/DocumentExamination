@@ -11,41 +11,42 @@
     <ul>
 
         <security:authorize access="hasRole('ROLE_DIRECTOR')">
-        <li>
-            <s:url value="/documents" var="backURL"/>
-            <a href="${backURL}">Документы</a>
-        </li>
+            <li>
+                <s:url value="/director/documents" var="backURL"/>
+                <a href="${backURL}">Документы</a>
+            </li>
         </security:authorize>
-         <security:authorize access="hasRole('ROLE_DIRECTOR')">
-        <li>
-            <s:url value="/reportDoc" var="rep1URL"/>
-            <a href="${rep1URL}">Отчет по документам</a>
+        <security:authorize access="hasRole('ROLE_DIRECTOR')">
+            <li>
+                <s:url value="/director/document/edit/${document.id}" var="editURL"/>
+                <a href="${editURL}">Добавить документ</a>
+            </li>
+        </security:authorize>
+        <security:authorize access="hasRole('ROLE_DIRECTOR')">
+            <li>
+                <s:url value="/director/reportDoc" var="rep1URL"/>
+                <a href="${rep1URL}">Отчет по документам</a>
 
-        </li>
-         </security:authorize>
-         <security:authorize access="hasRole('ROLE_USER')">
-        <li>
-            <s:url value="/user/documentsForUser" var="rep2URL"/>
-            <a href="${rep2URL}">Отчет по моим документам</a>
-        </li>
-         </security:authorize>
-         <security:authorize access="hasRole('ROLE_DIRECTOR')">
-        <li>
-            <s:url value="/document/edit/${document.id}" var="editURL"/>
-            <a href="${editURL}">Добавить документ</a>
-        </li>
-         </security:authorize>
-         <security:authorize access="hasRole('ROLE_ADMIN')">
-        <li>
-            <s:url value="/users" var="usersURL"/>
-            <a href="${usersURL}">Пользователи</a>
-        </li>
-         </security:authorize>
+            </li>
+        </security:authorize>
+        <security:authorize access="hasAnyRole('USER','DIRECTOR')">
+            <li>
+                <s:url value="/user/documentsForUser" var="rep2URL"/>
+                <a href="${rep2URL}">Отчет по моим документам</a>
+            </li>
+        </security:authorize>
+
         <security:authorize access="hasRole('ROLE_ADMIN')">
-        <li>
-            <s:url value="/user/edit" var="usersURL"/>
-            <a href="${usersURL}">Добавить пользователя</a>
-        </li>
+            <li>
+                <s:url value="/users" var="usersURL"/>
+                <a href="${usersURL}">Пользователи</a>
+            </li>
+        </security:authorize>
+        <security:authorize access="hasRole('ROLE_ADMIN')">
+            <li>
+                <s:url value="/user/edit" var="usersURL"/>
+                <a href="${usersURL}">Добавить пользователя</a>
+            </li>
         </security:authorize>
     </ul>
 </nav>
@@ -55,14 +56,14 @@
         <h1>Контроль ознакомления с документами</h1>
     </div>
     <security:authorize access="isAuthenticated()">
-    <div id="logout" class="logout">
+        <div id="logout" class="logout">
 
             <div>
                 <label for="exit" class="text" ><security:authentication property="principal.username"/></label>
                 <s:url value="/logout" var="exitURL"/>
                 <a class="text" href="${exitURL}">Выход</a>
             </div>
-    </div>
+        </div>
     </security:authorize>
 </div>
 

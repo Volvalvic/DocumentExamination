@@ -28,7 +28,7 @@
                 <c:out value="${document.documentType.name}"/>
             </td>  
             <td class="green">
-        <s:url value="/usersForDocument/${document.id}" var="backURL"/>
+        <s:url value="/director/usersForDocument/${document.id}" var="backURL"/>
         <a href="${backURL}">Ознакомленные</a>
     </td>
 </tr>

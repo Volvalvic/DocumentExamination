@@ -17,7 +17,7 @@ import rzd.vivc.documentexamination.repository.UserRepository;
  * @author VVolgina
  */
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/admin/users")
 public class UsersController {
 
     private final UserRepository userRepository;
@@ -38,9 +38,10 @@ public class UsersController {
      * @return списопользователей
      */
     @RequestMapping(method = RequestMethod.GET)
-    public List<User> users() {
+    public String users(Model model) {
         List<User> findFiltered = userRepository.findAll();
-        return findFiltered;
+        model.addAttribute(findFiltered);
+        return "users";
     }
 
 }
