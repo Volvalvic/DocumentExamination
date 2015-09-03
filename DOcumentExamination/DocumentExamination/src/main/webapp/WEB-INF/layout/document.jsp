@@ -12,10 +12,9 @@
     <ul>
         <li>
             <h1>Просмотр документа</h1>
-            <c:if test="${salary > 2000}">
-   <p>My salary is: <c:out value="${salary}"/><p>
-</c:if>
-            <a href="/<c:out value="${link}"/>" target="_blank"><c:out value="${document.file}"/></a>
+            <c:if test="${!link.isEmpty()}">
+                <a href="/<c:out value="${link}"/>" target="_blank"><c:out value="${document.file}"/></a>
+            </c:if>
         </li>
         <li>
             <label path="name">Название:</label>

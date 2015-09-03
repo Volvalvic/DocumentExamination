@@ -18,7 +18,9 @@
             <li>
                 <h1>Редактирование документа</h1>
                 <!-- target="_blank" ???????? ? ????? ???????-->
-                <a href="<c:out value="/${documentForm.filePath}"/>" target="_blank"><c:out value="${documentForm.fileName}"/></a>
+                <c:if test="${documentForm.filePath.length()>1}">
+                    <a href="<c:out value="/${documentForm.filePath}"/>" target="_blank"><c:out value="${documentForm.fileName}"/></a>
+                </c:if>
             </li>
             <li>
                 <sf:label path="name">Название:</sf:label> <sf:input path="name"/> <sf:errors path="name"/>

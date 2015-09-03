@@ -176,7 +176,7 @@ public class DocumentController {
         model.addAttribute("documentID", saved.getId());
         //ключ в модели будет document. этот атрибут сохранится в модели приредиректе
         model.addFlashAttribute(saved);
-        return "redirect:/director/documents/{documentID}";
+        return "redirect:/director/document/{documentID}";
     }
     
     /**

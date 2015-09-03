@@ -8,18 +8,11 @@ package rzd.vivc.documentexamination.configuration.initilizer;
 import java.io.File;
 import java.util.Arrays;
 import javax.servlet.Filter;
-import javax.servlet.FilterRegistration;
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import rzd.vivc.documentexamination.configuration.RootConfig;
-import rzd.vivc.documentexamination.configuration.RootConfig;
-import rzd.vivc.documentexamination.configuration.WebSecurityConfig;
-import rzd.vivc.documentexamination.configuration.WebConfig;
 import rzd.vivc.documentexamination.configuration.WebConfig;
 
 /**
@@ -54,25 +47,5 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         //максимальный размер файла, который будет загружен прямо на диск, без временной директории. сейчас все сразу на диск
         registration.setMultipartConfig(new MultipartConfigElement("C:" + File.separator + File.separator + "temp", 2097152, 4194304, 0));
     }
-
-    @Override
-    //список фильтров
-    protected Filter[] getServletFilters() {
-
-        Filter[] servletFilters = super.getServletFilters();
-        //добавляем фильтр для русских букв
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding("UTF-8");
-        filter.setForceEncoding(true);
-        if (servletFilters != null) {
-
-            Filter[] copyOf = Arrays.copyOf(servletFilters, servletFilters.length + 1);
-            copyOf[copyOf.length - 1] = filter;
-            return copyOf;
-        }
-        return new Filter[]{filter};
-    }
-
-
 
 }

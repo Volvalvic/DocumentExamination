@@ -259,6 +259,10 @@ footer{
     transition: padding .25s;
 } 
 
+.contact_form a{
+    height: 30px;
+}
+
 button.submit , .contact_form a, a.submit{
     background-color: #005B6D;
     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#005B6D));
