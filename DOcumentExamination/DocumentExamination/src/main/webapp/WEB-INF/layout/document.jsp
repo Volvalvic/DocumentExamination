@@ -34,7 +34,7 @@
         </li>
 
         <li>
-            <label path="startDate">Дата подписания: </label> 
+            <label path="startDate">Дата регистрации: </label> 
             <input value="${document.startDate}" disabled="true"/>
         </li>
         <li>

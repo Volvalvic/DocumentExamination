@@ -31,8 +31,8 @@ public class FileSavingToDiskService implements FileSavingService {
             String address = "C:" + File.separator + File.separator + "documents" + File.separator;
             String name = file.getSubmittedFileName();
             while ((new File(address + name)).exists()) {
-                String[] split = name.split(".");
-                name = split[split.length - 2] + UUID.randomUUID().toString() + split[split.length - 1];
+                String[] split = name.split("\\.");
+                name = split[split.length - 2] + UUID.randomUUID().toString() +"."+ split[split.length - 1];
             }
             file.write(address + name);
             document.setFileName(name);

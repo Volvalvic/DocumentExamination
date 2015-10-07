@@ -7,6 +7,7 @@ package rzd.vivc.documentexamination.repository;
 
 import java.util.Date;
 import java.util.List;
+import rzd.vivc.documentexamination.form.DateFilter;
 import rzd.vivc.documentexamination.model.dto.documents.Document;
 
 /**
@@ -26,5 +27,22 @@ public interface DocumentFilter {
      */
     List<Document> findFiltered(String name, String number, Date startDate, String description, long documentTypeID);
     
-
+    /**
+     * Извлекает из БД список отфильтрованных документов
+     * @param name название документа
+     * @param number номер документа
+     * @param startDate дата начала актуальности
+     * @param description описание документа
+     * @param documentTypeID id типа документа
+     * @param dateFilter дата регистрации доумента с по
+     * @return список документов
+     */
+    List<Document> findFiltered(String name, String number, Date startDate, String description, long documentTypeID, DateFilter dateFilter);
+    
+    /**
+     *Извлекает из БД список отфильтрованных документов
+     * @param dateFilter дата регистрации доумента с по
+     * @return список документов
+     */
+    List<Document> findFiltered(DateFilter dateFilter);
 }

@@ -6,10 +6,11 @@
   
     <definition name="template" template="/WEB-INF/layout/template.jsp">
         <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+        <put-attribute name="filter" value="" />
         <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
     </definition>
-    
-     <definition name="index" extends="template">
+        
+    <definition name="index" extends="template">
         <put-attribute name="body" value="/WEB-INF/layout/index.jsp" />
     </definition>
     
@@ -33,6 +34,7 @@
     
     <definition name="reportDoc" extends="template">
         <put-attribute name="body" value="/WEB-INF/layout/reportDoc.jsp" />
+        <put-attribute name="filter" value="/WEB-INF/layout/filter.jsp" />
     </definition>
     
     <definition name="documentRead" extends="template">
@@ -41,6 +43,7 @@
     
     <definition name="documentsForUser" extends="template">
         <put-attribute name="body" value="/WEB-INF/layout/documentsForUser.jsp" />
+        <put-attribute name="filter" value="/WEB-INF/layout/filter.jsp" />
     </definition>
     
     <definition name="editUser" extends="template">
@@ -55,7 +58,7 @@
         <put-attribute name="body" value="/WEB-INF/layout/user.jsp" />
     </definition>
 
- <definition name="login" extends="template">
+    <definition name="login" extends="template">
         <put-attribute name="body" value="/WEB-INF/layout/login.jsp" />
     </definition>
 </tiles-definitions>

@@ -31,4 +31,11 @@ public interface IStringService {
      * @return строковое представление
      */
     String getDateString(Date dat);
+    
+    /**
+     * Создает дату, соответствующую строке вида dd/MM/yyyy 
+     * @param str строка
+     * @return дата
+     */
+    Date getDateByyString(String str) throws IllegalArgumentException;
 }

@@ -34,6 +34,7 @@ document.createElement(e[i]);
             <t:insertAttribute name="header"/>
         </header>
         <article>
+            <t:insertAttribute name="filter"/>
             <t:insertAttribute name="body"/>
         </article>
         <footer>
