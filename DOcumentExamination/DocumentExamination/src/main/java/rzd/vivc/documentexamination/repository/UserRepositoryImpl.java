@@ -29,4 +29,9 @@ public class UserRepositoryImpl implements UserFilter {
          createQuery.setParameter("id", userID);
          return (User)createQuery.getResultList().get(0);
     }
+
+    @Override
+    public int getTotalCount() {
+        return new Integer(em.createQuery("SELECT COUNT(u) FROM User u").getSingleResult().toString());
+    }
 }

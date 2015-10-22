@@ -6,7 +6,10 @@
 package rzd.vivc.documentexamination.model.dto.documents;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -61,6 +64,9 @@ public class Document extends BaseEntity implements Serializable {
     @JoinColumn(name = "DOCUMENT_TYPE_ID")
     private DocumentType documentType;
     
+    //список ознакомлений для документа
+    @OneToMany(mappedBy = "document")
+    private List<Examination> examinations=new ArrayList<>();
 
 //</editor-fold>epartment
 
@@ -214,6 +220,23 @@ public class Document extends BaseEntity implements Serializable {
         this.documentType = documentType;
     }
 //</editor-fold>
+
+    /**
+     * Список ознакомлений
+     * @return Список ознакомлений
+     */
+    public List<Examination> getExaminations() {
+        return Collections.unmodifiableList(examinations);
+    }
+
+    /**
+     * Список ознакомлений
+     * @param examinations Список ознакомлений
+     */
+    public void setExaminations(List<Examination> examinations) {
+        this.examinations = examinations;
+    }
+
 //</editor-fold>
 
     @Override

@@ -223,14 +223,14 @@ footer{
     color: #777777;
 }
 
-.contact_form input, .contact_form select {
+.contact_form input, .contact_form select, .contact_form1 input, .contact_form1 select {
     height:20px; 
     width:220px; 
     padding:5px 8px;
 }
 
 
-.contact_form .checkbox{
+.contact_form .checkbox, .contact_form1 .checkbox{
 
     height:30px; 
     width:30px;
@@ -238,17 +238,17 @@ footer{
     box-shadow: 0px 0px 3px #005B6D, 0 10px 15px #eee inset;
 }
 
-.contact_form select {
+.contact_form select, .contact_form1 select {
     height:30px; 
     width:262px;
 }
-.contact_form textarea {padding:8px; width:300px;}
-.contact_form button, .contact_form a {margin-left:10px;}
+.contact_form textarea, .contact_form textarea {padding:8px; width:300px;}
+.contact_form button, .contact_form a, .download, .contact_form1 button, .contact_form1 a {margin-left:10px;}
 .checkbox{
     height:30px; 
     width: 30px; 
 }
-.contact_form input, .contact_form textarea, .contact_form select, .checkbox{ 
+.contact_form input, .contact_form textarea, .contact_form select, .checkbox, .contact_form1 input, .contact_form1 textarea, .contact_form1 select{ 
     border:1px solid #aaa;
     box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
     border-radius:2px;
@@ -259,11 +259,11 @@ footer{
     transition: padding .25s;
 } 
 
-.contact_form a{
+.contact_form a, .download{
     height: 30px;
 }
 
-button.submit , .contact_form a, a.submit{
+button.submit , .contact_form a, a.submit, .download{
     background-color: #005B6D;
     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#005B6D));
     background: -webkit-linear-gradient(top, #ffffff, #005B6D);
@@ -290,6 +290,10 @@ button.submit , .contact_form a, a.submit{
     text-shadow: 0 -1px 0 #396715;
     text-decoration: none;
 }
+.download{
+    float: right;
+    height: 20px;
+}
 
 button.submit:hover , .contact_form a:hover{
     opacity:.85;
@@ -312,7 +316,20 @@ button.submit:active , .contact_form a:active{
     margin:0px;
     padding:0px;
 }
+
+.contact_form1 ul {
+    width:100%;
+    list-style-type:none;
+    list-style-position:outside;
+    margin:0px;
+    padding:0px;
+}
 .contact_form li{
+    padding:12px; 
+    border-bottom:1px solid #eee;
+    position:relative;
+} 
+.contact_form1 li{
     padding:12px; 
     border-bottom:1px solid #eee;
     position:relative;
@@ -321,11 +338,22 @@ button.submit:active , .contact_form a:active{
     border-bottom:1px solid #777;
 } 
 
+.contact_form1 li:first-child, .contact_form1 li:last-child {
+    border-bottom:1px solid #777;
+} 
+
 .contact_form label {
     width:150px;
     margin-top: 3px;
     display:inline-block;
     float:left;
+    padding:3px;
+}
+
+.contact_form1 label {
+    width:50px;
+    margin-top: 3px;
+    display:inline-block;
     padding:3px;
 }
 

@@ -8,6 +8,7 @@ package rzd.vivc.documentexamination.repository;
 import java.util.Date;
 import java.util.List;
 import rzd.vivc.documentexamination.form.DateFilter;
+import rzd.vivc.documentexamination.form.DocumentLine;
 import rzd.vivc.documentexamination.model.dto.documents.Document;
 
 /**
@@ -45,4 +46,11 @@ public interface DocumentFilter {
      * @return список документов
      */
     List<Document> findFiltered(DateFilter dateFilter);
+    
+    /**
+     * СПисок строк с информацией по документам
+     * @param documentFilter фильтр по дате регистрации
+     * @return строки
+     */
+    List<DocumentLine> getFilteredLines(DateFilter documentFilter);
 }

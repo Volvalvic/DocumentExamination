@@ -35,7 +35,6 @@ public class DocumentControllerTest {
      */
    
     public void testEdit() throws Exception {
-        System.out.println("edit");
         DocumentRepository mockRepository = mock(DocumentRepository.class);
 
         //настройка ViewResolver, чтобы тест понял, как совместить возвращаемое имя view и реальную страницу

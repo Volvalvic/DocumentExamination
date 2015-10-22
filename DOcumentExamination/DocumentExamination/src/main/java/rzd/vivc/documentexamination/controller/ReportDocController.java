@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
 import rzd.vivc.documentexamination.form.DateFilter;
+import rzd.vivc.documentexamination.form.DocumentLine;
 import rzd.vivc.documentexamination.form.ExaminationLine;
 import rzd.vivc.documentexamination.form.service.DateFilterService;
 import rzd.vivc.documentexamination.model.dto.documents.Document;
 import rzd.vivc.documentexamination.repository.DocumentRepository;
+import rzd.vivc.documentexamination.service.ReportGeneratorService;
+import rzd.vivc.documentexamination.service.UserCreatedService;
 
 /**
  * Для reportDoc.jsp
@@ -33,6 +36,10 @@ public class ReportDocController {
     private DocumentRepository documentRepository;
     @Autowired
     private DateFilterService dateFilterService;
+    @Autowired
+    private UserCreatedService userCreatedService;
+    @Autowired
+    private ReportGeneratorService reportGeneratorService;
 
     public ReportDocController() {
     }
@@ -55,22 +62,31 @@ public class ReportDocController {
         DateFilter dateFilter = dateFilterService.createFirstAndLastDayOfCurrentMonth();
         model.addAttribute(dateFilter);
 
-        List<Document> findFiltered = documentRepository.findFiltered(name, number, date, description, type, dateFilter);
+        List<DocumentLine> findFiltered = documentRepository.getFilteredLines(dateFilter);
         model.addAttribute(findFiltered);
 
+        model.addAttribute("total", userCreatedService.getTotalCount());
+         model.addAttribute("file", createReport(findFiltered, dateFilter));
         return "reportDoc";
     }
-    
+
     /**
+     * Фильтрованный запрос
      *
-     * @param model
-     * @param dateFilter
-     * @return
+     * @param model модель
+     * @param dateFilter фильтр
+     * @return данные
      */
     @RequestMapping(method = POST)
     public String filteredDocuments(Model model, DateFilter dateFilter) {
-        List<Document> findFiltered = documentRepository.findFiltered(dateFilter);
+        List<DocumentLine> findFiltered = documentRepository.getFilteredLines(dateFilter);
         model.addAttribute(findFiltered);
+        model.addAttribute("total", userCreatedService.getTotalCount());
+         model.addAttribute("file", createReport(findFiltered, dateFilter));
         return "reportDoc";
+    }
+
+    private String createReport(List<DocumentLine> documentLines, DateFilter dateFilter) {
+        return reportGeneratorService.generateReportDoc(documentLines, userCreatedService.getTotalCount(), dateFilter);
     }
 }

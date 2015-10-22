@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import rzd.vivc.documentexamination.form.ExaminationLine;
 import rzd.vivc.documentexamination.repository.ExaminationRepository;
+import rzd.vivc.documentexamination.service.ReportGeneratorService;
 
 /**
  * Контроллер для страницы documentsForUsers.jsp
@@ -22,6 +23,8 @@ public class UsersForDocumentController {
 
     @Autowired
     private ExaminationRepository examinationRepository;
+    @Autowired
+    private ReportGeneratorService reportGeneratorService;
 
     /**
      * Конструктор. Репозиторий вводится через него в тестовых целях
@@ -42,10 +45,19 @@ public class UsersForDocumentController {
      */
     @RequestMapping(value = "/{documentID}", method = RequestMethod.GET)
     public String examinations(@PathVariable(value = "documentID") long documentID, Model model) {
-        
+
         List<ExaminationLine> findFiltered = examinationRepository.findByDocument(documentID);
         model.addAttribute(findFiltered);
+        int checkedCount = 0;
+        for (ExaminationLine findFiltered1 : findFiltered) {
+            if (findFiltered1.isChecked()) {
+                checkedCount++;
+            }
+        }
+        int percentage = checkedCount * 100 / findFiltered.size();
+        model.addAttribute("percentage", percentage);
 
+        model.addAttribute("file", reportGeneratorService.generateReportUsersForDoc(findFiltered, percentage));
         return "usersForDocument";
     }
 

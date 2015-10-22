@@ -17,7 +17,6 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Настройки для работы с БД MySQL
@@ -37,7 +36,9 @@ public class SpringDateConfigMySQL {
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         //расположение БД
         ds.setUrl("jdbc:mysql://localhost:3306/dateexamination");
-        ds.setUsername("root");
+       ds.setUsername("root");
+        /* ds.setUsername("exam");
+        ds.setPassword("exam68");*/
         //пул
         ds.setInitialSize(5);
         ds.setMaxIdle(5);

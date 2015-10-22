@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 import rzd.vivc.documentexamination.form.DateFilter;
+import rzd.vivc.documentexamination.form.DocumentLine;
 import rzd.vivc.documentexamination.model.dto.documents.Document;
 import rzd.vivc.documentexamination.model.dto.documents.DocumentType;
 
@@ -38,6 +39,23 @@ public class DocumentRepositoryImpl implements DocumentFilter {
     @Override
     public List<Document> findFiltered(DateFilter dateFilter) {
         return getFilteredAll(null, null, null, null, 0, dateFilter);
+    }
+
+    @Override
+    public List<DocumentLine> getFilteredLines(DateFilter documentFilter) {
+        StringBuilder query = new StringBuilder("SELECT new rzd.vivc.documentexamination.form.DocumentLine(d.id, d.name, d.number, d.startDate, (select count(e.id) from d.examinations e where e.checked=true)) FROM Document AS d ");
+        //Если присутствуют даннные для фильтра добавляем where. все необходимые условия добавляем в строку запроса
+        if (documentFilter != null) {
+            query.append("WHERE ");
+            query.append("d.startDate>=:start AND d.startDate<=:finish  ");
+        }
+
+        Query createQuery = em.createQuery(query.toString());
+        if (documentFilter != null) {
+            createQuery.setParameter("start", documentFilter.getFrom(), TemporalType.DATE);
+            createQuery.setParameter("finish", documentFilter.getTo(), TemporalType.DATE);
+        }
+        return (List<DocumentLine>) createQuery.getResultList();
     }
 
     private List<Document> getFilteredAll(String name, String number, Date startDate, String description, long documentTypeID, DateFilter documentFilter) {

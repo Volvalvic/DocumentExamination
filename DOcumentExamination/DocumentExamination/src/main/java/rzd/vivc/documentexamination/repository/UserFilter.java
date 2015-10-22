@@ -5,7 +5,6 @@
  */
 package rzd.vivc.documentexamination.repository;
 
-import java.util.List;
 import rzd.vivc.documentexamination.model.dto.users.User;
 
 /**
@@ -21,4 +20,9 @@ public interface UserFilter {
      */
    User findWithDependencies(Long userID);
 
+    /**
+     * Общее к-во зарегистрированных пользователй
+     * @return Общее к-во зарегистрированных пользователй
+     */
+    int getTotalCount();
 }

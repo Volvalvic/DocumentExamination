@@ -28,7 +28,6 @@ public class DocumentsControllerTest {
      */
 
     public void testFindAll() throws Exception {
-        System.out.println("allDocs");
 
         //заглушка для репозитория
         List<Document> expectedDocuments = createList(20);

@@ -46,14 +46,10 @@ public class ExaminationRepositoryImpl implements ExaminationFilter {
         Query createQuery = em.createQuery("SELECT new rzd.vivc.documentexamination.form.ExaminationLine(ex.id, ex.document.name, ex.document.number, ex.user.surname || ' ' ||ex.user.name || ' ' ||ex.user.patronomicname, ex.checked, ex.document.id, ex.user.id, ex.startDate) FROM Examination ex WHERE ex.document.id=:userID");
         createQuery.setParameter("userID", documentID);
         List<ExaminationLine> examinationLines = (List<ExaminationLine>) createQuery.getResultList();
-        for (ExaminationLine examinationLine : examinationLines) {
-            System.out.println(examinationLine);
-        }
         return examinationLines;
     }
 
     public static void main(String[] args) {
-        System.out.println("fregt");
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH)); // это будет начало месяца
         calendar.set(Calendar.HOUR_OF_DAY, 0);

@@ -22,6 +22,7 @@ import rzd.vivc.documentexamination.repository.AccountRepository;
 import rzd.vivc.documentexamination.repository.DepartmentRepository;
 import rzd.vivc.documentexamination.repository.RoleRepository;
 import rzd.vivc.documentexamination.repository.UserRepository;
+import rzd.vivc.documentexamination.service.UserCreatedService;
 
 /**
  * Для /user
@@ -38,12 +39,14 @@ public class UserController {
     //Репозиторий для отделов
     @Autowired
     private DepartmentRepository departmentRepository;
-    
      @Autowired
     private RoleRepository roleRepository;
     @Autowired
     private AccountRepository accountRepository;
-
+    
+    @Autowired
+    private UserCreatedService userCreatedService;
+    
     /**
      * конструктор
      *
@@ -144,6 +147,7 @@ public class UserController {
         }
         account.getUser().setId(userID);
         User save = userRepository.save(account.getUser());
+        userCreatedService.updateTotalCount();
         Account saved = accountRepository.save(account);
         model.addAttribute("userID", save.getId());
         return "redirect:/admin/user/{userID}";

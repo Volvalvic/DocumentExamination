@@ -42,8 +42,6 @@ public class DateFilter {
      * @return Дата с
      */
     public String getFromString() {
-        System.out.println(stringImprover==null);
-        System.out.println(from==null);
         return stringImprover.getStrangeDateString(from);
     }
 
