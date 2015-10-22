@@ -20,6 +20,7 @@ public class DateFilter {
     
     private Date from;
     private Date to;
+    private String name="";
 
     /**
      * Дата с
@@ -84,6 +85,24 @@ public class DateFilter {
     public void setToString(String to) throws IllegalArgumentException{
         this.to = stringImprover.getDateByyStrangeString(to);
     }
+
+    /**
+     * Проверка наличия строки в названии документа
+     * @return Проверка наличия строки в названии документа
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Проверка наличия строки в названии документа
+     * @param name Проверка наличия строки в названии документа
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
     
     public DateFilter() {
     }
@@ -96,6 +115,18 @@ public class DateFilter {
     public DateFilter(Date from, Date to) {
         this.from = from;
         this.to = to;
+    }
+
+    /**
+     *
+     * @param from Дата с
+     * @param to Дата по
+     * @param name Проверка наличия строки в названии документа
+     */
+    public DateFilter(Date from, Date to, String name) {
+        this.from = from;
+        this.to = to;
+        this.name = name;
     }
     
     

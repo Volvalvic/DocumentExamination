@@ -357,6 +357,13 @@ button.submit:active , .contact_form a:active{
     padding:3px;
 }
 
+.contact_form1 label.long {
+    width:90px;
+    margin-top: 3px;
+    display:inline-block;
+    padding:3px;
+}
+
 .on_top{
     z-index: 100;
 }

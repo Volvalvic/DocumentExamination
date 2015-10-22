@@ -11,11 +11,12 @@
 <sf:form method="POST" commandName="dateFilter" cssClass="contact_form1">
     <ul>
         <li>
-            <h1>Фильтрация по дате регистрации документа</h1>
+            <h1>Фильтр</h1>
         </li>
         <li>
             <sf:label path="fromString">C: </sf:label> <sf:input cssClass="on_top" path="fromString" type="text" onfocus="this.select();lcs(this)"  onclick="event.cancelBubble=true;this.select();lcs(this)" class="calendar3"/>
              <sf:label path="toString">По: </sf:label> <sf:input cssClass="on_top" path="toString" type="text" onfocus="this.select();lcs(this)"  onclick="event.cancelBubble=true;this.select();lcs(this)" class="calendar3"/>
+             <sf:label cssClass="long" path="name">Название: </sf:label>  <sf:input path="name" type="text"/>
         </li>
          <li>
                 <button class="submit" type="submit" name="OK">ОК</button>

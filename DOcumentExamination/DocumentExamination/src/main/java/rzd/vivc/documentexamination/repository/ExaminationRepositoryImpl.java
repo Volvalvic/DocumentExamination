@@ -27,10 +27,17 @@ public class ExaminationRepositoryImpl implements ExaminationFilter {
 
     @Override
     public List<ExaminationLine> findByUserAndDate(String login, DateFilter dateFilter) {
-        
-        Query createQuery = em.createQuery("SELECT new rzd.vivc.documentexamination.form.ExaminationLine(ex.id, ex.document.name, ex.document.number, ex.document.name, ex.checked, ex.document.id, ex.user.id, ex.startDate) FROM Examination ex "
-                                                                  + "WHERE ex.user.account.login LIKE :login AND ex.document.startDate>=:start AND ex.document.startDate<=:finish");
+        StringBuilder queryString=new StringBuilder("SELECT new rzd.vivc.documentexamination.form.ExaminationLine(ex.id, ex.document.name, ex.document.number, ex.document.name, ex.checked, ex.document.id, ex.user.id, ex.startDate) FROM Examination ex ")
+                                                              .append("WHERE ex.user.account.login LIKE :login AND ex.document.startDate>=:start AND ex.document.startDate<=:finish");
+        String name=dateFilter.getName();
+        if(!name.isEmpty()){
+            queryString.append(" AND ex.document.name like :name");
+        }
+        Query createQuery = em.createQuery(queryString.toString());
         createQuery.setParameter("login", login).setParameter("start", dateFilter.getFrom(), TemporalType.DATE).setParameter("finish", dateFilter.getTo(), TemporalType.DATE);
+        if(!name.isEmpty()){
+            createQuery.setParameter("name",'%'+ name+'%');
+        }
         return (List<ExaminationLine>) createQuery.getResultList();
     }
 

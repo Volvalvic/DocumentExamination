@@ -48,12 +48,18 @@ public class DocumentRepositoryImpl implements DocumentFilter {
         if (documentFilter != null) {
             query.append("WHERE ");
             query.append("d.startDate>=:start AND d.startDate<=:finish  ");
+            if (!documentFilter.getName().isEmpty()) {
+                query.append("AND d.name like :name ");
+            }
         }
 
         Query createQuery = em.createQuery(query.toString());
         if (documentFilter != null) {
             createQuery.setParameter("start", documentFilter.getFrom(), TemporalType.DATE);
             createQuery.setParameter("finish", documentFilter.getTo(), TemporalType.DATE);
+            if (!documentFilter.getName().isEmpty()) {
+                createQuery.setParameter("name", '%'+documentFilter.getName()+'%');
+            }
         }
         return (List<DocumentLine>) createQuery.getResultList();
     }

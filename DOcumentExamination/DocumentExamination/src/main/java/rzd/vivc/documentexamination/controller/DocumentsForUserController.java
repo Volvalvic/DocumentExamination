@@ -46,14 +46,19 @@ public class DocumentsForUserController {
     @RequestMapping(method = RequestMethod.GET)
     public String examinations(Model model) {
         DateFilter dateFilter = dateFilterService.createFirstAndLastDayOfCurrentMonth();
+        dateFilter.setName("");
+        
         List<ExaminationLine> findFiltered = examinationRepository.findByUserAndDate(authenticationInfoService.getLogin(), dateFilter);
+        
         model.addAttribute(findFiltered);
         model.addAttribute(dateFilter);
+        
         return "documentsForUser";
     }
 
     /**
      * Обрабатывает запрос на получение списка ознакомлений с заданным фильтром
+     *
      * @param model модель
      * @param dateFilter фильтр
      * @return documentsForUser
@@ -61,7 +66,9 @@ public class DocumentsForUserController {
     @RequestMapping(method = POST)
     public String filteredExaminations(Model model, DateFilter dateFilter) {
         List<ExaminationLine> findFiltered = examinationRepository.findByUserAndDate(authenticationInfoService.getLogin(), dateFilter);
+        
         model.addAttribute(findFiltered);
+        
         return "documentsForUser";
     }
 }
