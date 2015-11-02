@@ -37,6 +37,13 @@
                 </sf:select>
             </li>
             <li>
+                <sf:label path="departmentID">Группа:</sf:label>
+                <sf:select path="departmentID">  
+                    <sf:option  label="Все" value="0"/>
+                    <sf:options items="${departments}" itemLabel="name" itemValue="id"/>
+                </sf:select>
+            </li>
+            <li>
                 <!--????? ????????? type, ????? ??????? ????????? ???????????? ????, ????????????? ??? Html5
                            cssStyle - ????? Css-->
                 <sf:label path="startDate">Дата регистрации: </sf:label> <sf:input cssClass="on_top" path="startDate" type="text" onfocus="this.select();lcs(this)"  onclick="event.cancelBubble=true;this.select();lcs(this)" class="calendar3"/>  <sf:errors path="startDate" />

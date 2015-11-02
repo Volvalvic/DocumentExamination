@@ -18,6 +18,7 @@ public class DocumentLine {
     private final String num;
     private final Date registrationDate;
     private final long checked;
+    private final long unchecked;
     private final StringImprover improver=new StringImprover();
 
     /**
@@ -68,6 +69,10 @@ public class DocumentLine {
         return checked;
     }
 
+    public long getUnchecked() {
+        return unchecked;
+    }
+
 
     /**
      *
@@ -77,12 +82,13 @@ public class DocumentLine {
      * @param registrationDate дата регистрации
      * @param checked ознакомленные
      */
-    public DocumentLine(long id, String name, String num, Date registrationDate, long checked) {
+    public DocumentLine(long id, String name, String num, Date registrationDate, long checked, long unchecked) {
         this.id = id;
         this.name = name;
         this.num = num;
         this.registrationDate = registrationDate;
         this.checked = checked;
+        this.unchecked=unchecked;
     }
     
     

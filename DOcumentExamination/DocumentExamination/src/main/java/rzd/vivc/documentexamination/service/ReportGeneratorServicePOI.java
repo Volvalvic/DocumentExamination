@@ -28,7 +28,7 @@ import rzd.vivc.documentexamination.form.ExaminationLine;
 public class ReportGeneratorServicePOI implements ReportGeneratorService {
 
     @Override
-    public String generateReportDoc(List<DocumentLine> documentLines, long total, DateFilter dateFilter) {
+    public String generateReportDoc(List<DocumentLine> documentLines, DateFilter dateFilter) {
         InputStream in = null;
         HSSFWorkbook wb = null;
         try {
@@ -55,7 +55,7 @@ public class ReportGeneratorServicePOI implements ReportGeneratorService {
             createCell = createRow.createCell(3);
             createCell.setCellValue(line.getChecked());
             createCell = createRow.createCell(4);
-            createCell.setCellValue(total - line.getChecked());
+            createCell.setCellValue(line.getUnchecked());
         }
 
         String tail = new Date().getTime() + ".xls";
@@ -93,7 +93,7 @@ public class ReportGeneratorServicePOI implements ReportGeneratorService {
         Sheet sheet = wb.getSheetAt(0);
         Row row = sheet.getRow(0);
         Cell cell = row.getCell(3);
-        cell.setCellValue(examinationLines.get(0).getName());
+        cell.setCellValue(examinationLines.size()>0?examinationLines.get(0).getName():"В подразделении отсутствуют неознакомленные пользователи");
         int i = 2;
         for (ExaminationLine line : examinationLines) {
             if (!line.isChecked()) {

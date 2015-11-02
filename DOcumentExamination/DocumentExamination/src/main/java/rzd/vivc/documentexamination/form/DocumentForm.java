@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import rzd.vivc.documentexamination.model.dto.documents.Document;
 import rzd.vivc.documentexamination.model.dto.documents.DocumentType;
+import rzd.vivc.documentexamination.model.dto.users.Department;
 
 /**
  * Документ для формы редактирования
@@ -23,7 +24,6 @@ public class DocumentForm {
 
     //<editor-fold defaultstate="collapsed" desc="поля">
     //id документа
-
     private long id;
     //Название документа
     //сообщения для валидайии сожержатся в файле
@@ -46,9 +46,10 @@ public class DocumentForm {
     private String fileName;
     //ссылка к файлу
     private String filePath;
-
     //тип документа
     private long typeID;
+    //подразделение
+    private long departmentID;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="get-set">
@@ -198,10 +199,6 @@ public class DocumentForm {
     }
 //</editor-fold>
 
-
-
-
-
     //<editor-fold defaultstate="collapsed" desc="documentType - тип документа">
     /**
      * тип документа
@@ -221,6 +218,21 @@ public class DocumentForm {
         this.typeID = typeID;
     }
 
+    /**
+     * подразделение
+     * @return подразделение
+     */
+    public long getDepartmentID() {
+        return departmentID;
+    }
+
+    /**
+     * подразделение 
+     * @param departmentID подразделение
+     */
+    public void setDepartmentID(long departmentID) {
+        this.departmentID = departmentID;
+    }    
 //</editor-fold>
 
 //</editor-fold>
@@ -236,6 +248,7 @@ public class DocumentForm {
         this.description = document.getDescription();
         this.fileName = document.getFile();
         this.typeID = document.getDocumentType()==null?0:document.getDocumentType().getId();
+        this.departmentID=document.getDepartment()==null?0:document.getDepartment().getId();
     }
     
     
@@ -246,13 +259,11 @@ public class DocumentForm {
      * @return экземпляр документа из данных формы
      */
     public Document toDocument() {
-        return new Document(name, number, startDate, description, fileName, typeID==0?null:new DocumentType(typeID), id);
+        return new Document(name, number, startDate, description, fileName, typeID==0?null:new DocumentType(typeID), departmentID==0?null:new Department(departmentID), id);
     }
 
     @Override
     public String toString() {
         return "DocumentForm{" + "id=" + id + ", name=" + name + ", number=" + number + ", startDate=" + startDate + ", description=" + description +", fileName=" + fileName + ", typeID=" + typeID + '}';
-    }
-    
-    
+    }   
 }

@@ -17,6 +17,15 @@ import rzd.vivc.documentexamination.model.dto.base.NamedEntity;
 @Entity
 @Table(name = "Department")
 public class Department extends NamedEntity implements Serializable{
+
+    public Department(long departmentID) {
+        super(departmentID);
+    }
+
+    public Department() {
+    }
+    
+    
     @Override
     public String toString() {
         return "Department{" + super.toString()+ '}';

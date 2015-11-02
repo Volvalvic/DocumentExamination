@@ -54,7 +54,7 @@ public class UsersForDocumentController {
                 checkedCount++;
             }
         }
-        int percentage = checkedCount * 100 / findFiltered.size();
+        int percentage = findFiltered.size()>0?checkedCount * 100 / findFiltered.size():100;
         model.addAttribute("percentage", percentage);
 
         model.addAttribute("file", reportGeneratorService.generateReportUsersForDoc(findFiltered, percentage));

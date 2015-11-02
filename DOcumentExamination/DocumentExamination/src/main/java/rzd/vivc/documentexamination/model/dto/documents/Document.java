@@ -24,6 +24,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import rzd.vivc.documentexamination.model.dto.base.BaseEntity;
+import rzd.vivc.documentexamination.model.dto.users.Department;
 import rzd.vivc.documentexamination.model.dto.users.User;
 
 /**
@@ -67,6 +68,11 @@ public class Document extends BaseEntity implements Serializable {
     //список ознакомлений для документа
     @OneToMany(mappedBy = "document")
     private List<Examination> examinations=new ArrayList<>();
+    
+    //Группа пользователей, для которых предназначен документ
+    @ManyToOne
+    @JoinColumn(name = "DEPARTMENT_ID", nullable = true)
+    private Department department;
 
 //</editor-fold>epartment
 
@@ -105,6 +111,19 @@ public class Document extends BaseEntity implements Serializable {
          this.file = file;
         this.documentType = documentType;
     }
+
+    public Document(String name, String number, Date startDate, String description, String file, DocumentType documentType, Department department, long id) {
+        super(id);
+        this.name = name;
+        this.number = number;
+        this.startDate = startDate;
+        this.description = description;
+        this.file = file;
+        this.documentType = documentType;
+        this.department = department;
+    }
+    
+    
 
 //<editor-fold defaultstate="collapsed" desc="get-set">
     //<editor-fold defaultstate="collapsed" desc="name, number, startDate - идентификационные данные документа">
@@ -237,6 +256,21 @@ public class Document extends BaseEntity implements Serializable {
         this.examinations = examinations;
     }
 
+    /**
+     *Группа пользователей, для которых предназначен документ
+     * @return Группа пользователей, для которых предназначен документ
+     */
+    public Department getDepartment() {
+        return department;
+    }
+
+    /**
+     * Группа пользователей, для которых предназначен документ
+     * @param department Группа пользователей, для которых предназначен документ
+     */
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 //</editor-fold>
 
     @Override

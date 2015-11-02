@@ -20,9 +20,10 @@ public interface ReportGeneratorService {
      * Список документов и к-во пользователей, озщнакомленных и не ознакомленных с ними
      * @param documentLines документы
      * @param i к-во пользователей
+     * @param dateFilter
      * @return адрес файла с отчетом
      */
-    String generateReportDoc(List<DocumentLine> documentLines, long i, DateFilter dateFilter);
+    String generateReportDoc(List<DocumentLine> documentLines, DateFilter dateFilter);
 
     /**
      * Список пользователей, не озщнакомленных с документом

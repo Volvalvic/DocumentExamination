@@ -32,7 +32,7 @@
                 <c:out value="${document.checked}"/>
             </td>  
             <td class="grey">
-                <c:out value="${total-document.checked}"/>
+                <c:out value="${document.unchecked}"/>
             </td>  
             <td class="green">
                 <s:url value="/director/usersForDocument/${document.id}" var="backURL"/>

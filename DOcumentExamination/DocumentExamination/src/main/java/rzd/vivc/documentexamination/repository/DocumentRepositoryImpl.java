@@ -43,7 +43,7 @@ public class DocumentRepositoryImpl implements DocumentFilter {
 
     @Override
     public List<DocumentLine> getFilteredLines(DateFilter documentFilter) {
-        StringBuilder query = new StringBuilder("SELECT new rzd.vivc.documentexamination.form.DocumentLine(d.id, d.name, d.number, d.startDate, (select count(e.id) from d.examinations e where e.checked=true)) FROM Document AS d ");
+        StringBuilder query = new StringBuilder("SELECT new rzd.vivc.documentexamination.form.DocumentLine(d.id, d.name, d.number, d.startDate, (select count(e.id) from d.examinations e where e.checked=true and (e.user.department=d.department or d.department is null)), (select count(e.id) from d.examinations e where e.checked=false and (e.user.department=d.department or d.department is null))) FROM Document AS d ");
         //Если присутствуют даннные для фильтра добавляем where. все необходимые условия добавляем в строку запроса
         if (documentFilter != null) {
             query.append("WHERE ");

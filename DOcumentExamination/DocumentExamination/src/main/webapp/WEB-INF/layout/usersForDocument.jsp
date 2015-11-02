@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
-<a href="<c:out value="/${file}"/>" target="_blank"  class="download">Отчет</a>
+<a href="<c:out value="/${file}"/>" target="_blank"  class="download" >Отчет</a>
 <table class="features-table">
     <tr >
         <th>ФИО</th>

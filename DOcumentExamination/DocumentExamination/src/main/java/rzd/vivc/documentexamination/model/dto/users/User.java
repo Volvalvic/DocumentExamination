@@ -218,4 +218,5 @@ public class User extends BaseEntity implements Serializable {
     public String toString() {
         return "User{" + super.toString() + "name=" + name + ", surname=" + surname + ", patronomicname=" + patronomicname + ", phoneNumber=" + phoneNumber + ", additionalInfo=" + additionalInfo + ", department=" + (department == null ? "" : department.getId() + " " + department.getName()) + '}';
     }
+
 }

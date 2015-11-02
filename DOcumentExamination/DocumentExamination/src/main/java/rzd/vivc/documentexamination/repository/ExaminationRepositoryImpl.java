@@ -28,7 +28,7 @@ public class ExaminationRepositoryImpl implements ExaminationFilter {
     @Override
     public List<ExaminationLine> findByUserAndDate(String login, DateFilter dateFilter) {
         StringBuilder queryString=new StringBuilder("SELECT new rzd.vivc.documentexamination.form.ExaminationLine(ex.id, ex.document.name, ex.document.number, ex.document.name, ex.checked, ex.document.id, ex.user.id, ex.startDate) FROM Examination ex ")
-                                                              .append("WHERE ex.user.account.login LIKE :login AND ex.document.startDate>=:start AND ex.document.startDate<=:finish");
+                                                              .append("WHERE ex.user.account.login LIKE :login AND ex.document.startDate>=:start AND ex.document.startDate<=:finish AND (ex.document.department=ex.user.department OR ex.document.department is null)");
         String name=dateFilter.getName();
         if(!name.isEmpty()){
             queryString.append(" AND ex.document.name like :name");
@@ -50,7 +50,7 @@ public class ExaminationRepositoryImpl implements ExaminationFilter {
 
     @Override
     public List<ExaminationLine> findByDocument(long documentID) {
-        Query createQuery = em.createQuery("SELECT new rzd.vivc.documentexamination.form.ExaminationLine(ex.id, ex.document.name, ex.document.number, ex.user.surname || ' ' ||ex.user.name || ' ' ||ex.user.patronomicname, ex.checked, ex.document.id, ex.user.id, ex.startDate) FROM Examination ex WHERE ex.document.id=:userID");
+        Query createQuery = em.createQuery("SELECT new rzd.vivc.documentexamination.form.ExaminationLine(ex.id, ex.document.name, ex.document.number, ex.user.surname || ' ' ||ex.user.name || ' ' ||ex.user.patronomicname, ex.checked, ex.document.id, ex.user.id, ex.startDate) FROM Examination ex WHERE ex.document.id=:userID and (ex.document.department is null or ex.document.department=ex.user.department)");
         createQuery.setParameter("userID", documentID);
         List<ExaminationLine> examinationLines = (List<ExaminationLine>) createQuery.getResultList();
         return examinationLines;
@@ -68,9 +68,6 @@ public class ExaminationRepositoryImpl implements ExaminationFilter {
         calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 59);
         Date finish = calendar.getTime();
-
-        System.out.println(start);
-        System.out.println(finish);
 
     }
 }

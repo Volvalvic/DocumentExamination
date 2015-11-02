@@ -32,7 +32,10 @@
             <label path="typeID">Тип:</label> 
             <input value="${document.documentType.name}" disabled="true"/>
         </li>
-
+        <li>
+            <label path="departmentID">Тип:</label> 
+            <input value="${document.department.name}" disabled="true"/>
+        </li>
         <li>
             <label path="startDate">Дата регистрации: </label> 
             <input value="${document.startDate}" disabled="true"/>

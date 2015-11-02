@@ -24,6 +24,7 @@ import rzd.vivc.documentexamination.repository.DocumentRepository;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import rzd.vivc.documentexamination.controller.exception.FileLoadingException;
 import rzd.vivc.documentexamination.form.DocumentForm;
+import rzd.vivc.documentexamination.repository.DepartmentRepository;
 import rzd.vivc.documentexamination.repository.DocumentTypeRepository;
 import rzd.vivc.documentexamination.service.DocumentAdditionalSavingServicesRepository;
 import rzd.vivc.documentexamination.service.FileSavingService;
@@ -42,6 +43,9 @@ public class DocumentController {
     //Репозиторий для типов документов
     @Autowired
     private DocumentTypeRepository documentTypeRepository;
+    //Репозиторий для списка подразделений
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     //для сохранения загруженных файлов
     @Autowired
@@ -159,6 +163,7 @@ public class DocumentController {
 
     private String processEditRealisation(Part file, long documentID, DocumentForm document, Errors errors, RedirectAttributes model) {
         if (errors.hasErrors()) {
+            addTypes(model);
             return "editDocument";
         }
         document.setFile(file);
@@ -184,5 +189,6 @@ public class DocumentController {
      */
     private void addTypes(Model model){
        model.addAttribute("types", documentTypeRepository.findAll(new Sort(Sort.Direction.ASC, "name"))) ;
+       model.addAttribute("departments", departmentRepository.findAll(new Sort(Sort.Direction.ASC, "name")));
     }
 }

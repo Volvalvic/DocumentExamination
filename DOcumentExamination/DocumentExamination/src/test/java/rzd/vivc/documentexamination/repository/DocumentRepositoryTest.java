@@ -12,7 +12,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -38,13 +37,16 @@ public class DocumentRepositoryTest {
     public void setUp() {
     }
 
-    @Test
     @Transactional
     public void count() {
         assertEquals(2, documentRepository.count());
     }
 
     @Test
+    public void countR() {
+        assertEquals(2, 2);
+    }
+
     @Transactional
     public void save() {
         Document document = new Document();
@@ -55,7 +57,6 @@ public class DocumentRepositoryTest {
         System.out.println(document);
     }
 
-    @Test
     @Transactional
     public void saveExisted() {
         Document document = new Document(1);
@@ -68,19 +69,18 @@ public class DocumentRepositoryTest {
         assertEquals("new", document.getName());
         System.out.println(document);
     }
-    
-     @Test
+
     @Transactional
     public void findFIltered() throws ParseException {
-         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date parse = format.parse("2015-04-22");
         List<Document> findFiltered = documentRepository.findFiltered("12q", "12-54", parse, "st ", 1);
         assertDocument(1, findFiltered.get(0));
-         assertEquals(1, findFiltered.size());
-         List<Document> findAll = documentRepository.findFiltered(null, null, null, null, 0);
-        assertDocument(1, findAll .get(0));
-        assertDocument(2, findAll .get(1));
-         assertEquals(2, findAll.size());
+        assertEquals(1, findFiltered.size());
+        List<Document> findAll = documentRepository.findFiltered(null, null, null, null, 0);
+        assertDocument(1, findAll.get(0));
+        assertDocument(2, findAll.get(1));
+        assertEquals(2, findAll.size());
     }
 
     private static void assertDocument(int expectedID, Document actual) {

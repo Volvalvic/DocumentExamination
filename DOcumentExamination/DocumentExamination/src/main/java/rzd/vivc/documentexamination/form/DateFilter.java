@@ -6,8 +6,6 @@
 package rzd.vivc.documentexamination.form;
 
 import java.util.Date;
-import org.springframework.beans.factory.annotation.Autowired;
-import rzd.vivc.documentexamination.service.IStringService;
 import rzd.vivc.documentexamination.service.StringImprover;
 
 /**

@@ -37,8 +37,6 @@ public class ReportDocController {
     @Autowired
     private DateFilterService dateFilterService;
     @Autowired
-    private UserCreatedService userCreatedService;
-    @Autowired
     private ReportGeneratorService reportGeneratorService;
 
     public ReportDocController() {
@@ -65,7 +63,6 @@ public class ReportDocController {
         List<DocumentLine> findFiltered = documentRepository.getFilteredLines(dateFilter);
         model.addAttribute(findFiltered);
 
-        model.addAttribute("total", userCreatedService.getTotalCount());
          model.addAttribute("file", createReport(findFiltered, dateFilter));
         return "reportDoc";
     }
@@ -81,12 +78,11 @@ public class ReportDocController {
     public String filteredDocuments(Model model, DateFilter dateFilter) {
         List<DocumentLine> findFiltered = documentRepository.getFilteredLines(dateFilter);
         model.addAttribute(findFiltered);
-        model.addAttribute("total", userCreatedService.getTotalCount());
          model.addAttribute("file", createReport(findFiltered, dateFilter));
         return "reportDoc";
     }
 
     private String createReport(List<DocumentLine> documentLines, DateFilter dateFilter) {
-        return reportGeneratorService.generateReportDoc(documentLines, userCreatedService.getTotalCount(), dateFilter);
+        return reportGeneratorService.generateReportDoc(documentLines, dateFilter);
     }
 }
